@@ -9,6 +9,9 @@ using namespace std;
 //Parent class to base our other classes off of 
 class Course {
 	public:
+	
+		Course(): courseName(),credits(), gpa(), exams(),finals() {};
+	
 		string getCourseName() {
 			return courseName;
 		}
