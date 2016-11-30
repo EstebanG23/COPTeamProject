@@ -9,12 +9,12 @@
 
 #include <stdio.h>
 #include <string>
-//#include "Course.cpp"
+#include "Course.cpp"
 
 
 using namespace std;
 
-class Phy2049/*: public Course*/{
+class Phy2049: public Course{
 private:
     double quizzes [20];
     double homework [20];

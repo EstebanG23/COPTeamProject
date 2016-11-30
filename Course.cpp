@@ -46,6 +46,6 @@ class Course {
 		int credits;
 		double gpa;
 		double exams[20];
-		double final;
+		double finals;
 };
 

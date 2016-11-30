@@ -7,3 +7,30 @@
 //
 
 #include <stdio.h>
+#include <string>
+#include "Course.cpp"
+
+
+using namespace std;
+
+class Cot3100: public Course{
+private:
+    
+public:
+    void calcGpa();
+    void updateExam(int examNum, double score);
+    void updateFinal(int score);
+    
+};
+
+void Cot3100::calcGpa(){
+    
+}
+
+void Cot3100::updateExam(int examNum, double score){
+    
+}
+
+void Cot3100::updateFinal(int score){
+    
+}
