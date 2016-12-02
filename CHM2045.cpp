@@ -24,7 +24,15 @@ public:
     void updateFinal(int score);
     void updateHomework(int homeworkNum, double score);
     void updateHittPoints(double score);
+    void initializearrays();
 };
+
+void Chm2045::initializearrays(){
+    for (int i=0;i<20;i++){
+        exams[i]=-1;
+        homework[i]=-1;
+    }
+}
 
 void Chm2045::calcGpa(){
     double tempGPA=0;

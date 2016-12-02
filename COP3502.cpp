@@ -27,7 +27,17 @@ public:
     void updateHomework(int homeworkNum, double score);
     void updateLab(int hittNum, double score);
     void updateProgAssignments(int progNum, double score);
+    void initializearrays();
 };
+
+void Chm2045::initializearrays(){
+    for (int i=0;i<20;i++){
+        exams[i]=-1;
+        labs[i]=-1;
+        homework[i]=-1;
+        progAssignments[i]=-1;
+    }
+}
 
 void Chm2045::calcGpa(){
     double tempGPA;

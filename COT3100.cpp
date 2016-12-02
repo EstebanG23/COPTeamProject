@@ -20,8 +20,14 @@ public:
     void calcGpa();
     void updateExam(int examNum, double score);
     void updateFinal(double score);
-    
+    void initializearrays();
 };
+
+void Cot3100::initializearrays(){
+    for (int i=0;i<20;i++){
+        exams[i]=-1;
+    }
+}
 
 void Cot3100::calcGpa(){
     double tempGPA=0;

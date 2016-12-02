@@ -27,7 +27,16 @@ public:
     void updateQuiz(int quizNum, double score);
     void updateHomework(int homeworkNum, double score);
     void updateHittPoints(double score);
+    void initializearrays();
 };
+
+void Phy2049::initializearrays(){
+    for (int i=0;i<20;i++){
+        exams[i]=-1;
+        quizzes[i]=-1;
+        homework[i]=-1;
+    }
+}
 
 void Phy2049::calcGpa(){
     double tempGpa;
@@ -89,4 +98,11 @@ void Phy2049::updateHomework(int homeworkNum, double score){
 
 void Phy2049::updateHittPoints(double score){
     this->hittPoints=score;
+}
+
+int main() {
+    
+    
+    
+    
 }
