@@ -24,10 +24,10 @@ public:
     void updateFinal(int score);
     void updateHomework(int homeworkNum, double score);
     void updateHittPoints(double score);
-    void initializearrays();
+    Chm2045();
 };
 
-void Chm2045::initializearrays(){
+Chm2045::Chm2045(){
     for (int i=0;i<20;i++){
         exams[i]=-1;
         homework[i]=-1;

@@ -27,10 +27,10 @@ public:
     void updateQuiz(int quizNum, double score);
     void updateHomework(int homeworkNum, double score);
     void updateHittPoints(double score);
-    void initializearrays();
+    Phy2049();
 };
 
-void Phy2049::initializearrays(){
+Phy2049::Phy2049(){
     for (int i=0;i<20;i++){
         exams[i]=-1;
         quizzes[i]=-1;

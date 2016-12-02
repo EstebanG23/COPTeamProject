@@ -27,10 +27,10 @@ public:
     void updateHomework(int homeworkNum, double score);
     void updateLab(int hittNum, double score);
     void updateProgAssignments(int progNum, double score);
-    void initializearrays();
+    Chm2045();
 };
 
-void Chm2045::initializearrays(){
+Chm2045::Chm2045(){
     for (int i=0;i<20;i++){
         exams[i]=-1;
         labs[i]=-1;
