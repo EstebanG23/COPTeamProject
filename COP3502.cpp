@@ -56,15 +56,17 @@ void Chm2045::calcGpa(){
             avgProg+=progAssignments[i];
         }
     }
-    double templowest;
     for (int i=0;i<20;i++){
         if (labs[i]!=-1){
             numLabs++;
             avgLabs+=labs[i];
             if (labs[i]<lablowest && labs[i]==100) {
-                templowest=lablowest
+                labsecondlowest=lablowest;
                 lablowest=labs[i];
-            }else if(labs[i]<labsecondlowest){
+            }else if (labs[i]<lablowest){
+                lablowest=labs[i];
+            }
+            else if(labs[i]<labsecondlowest){
                 labsecondlowest=labs[i];
             }
         }
