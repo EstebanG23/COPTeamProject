@@ -31,11 +31,11 @@ void Chm2045::calcGpa(){
 }
 
 void Chm2045::updateExam(int examNum, double score){
-    
+    this->exams[examNum]=score;
 }
 
 void Chm2045::updateFinal(int score){
-    //
+    this->finals=score;
 }
 
 

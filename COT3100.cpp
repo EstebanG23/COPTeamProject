@@ -19,18 +19,29 @@ private:
 public:
     void calcGpa();
     void updateExam(int examNum, double score);
-    void updateFinal(int score);
+    void updateFinal(double score);
     
 };
 
 void Cot3100::calcGpa(){
-    
+    double tempGPA=0;
+    int numexams=0;
+    double avgexam=0;
+    for (int i=0;i<4;i++){
+        if(exams[i]!=-1){
+            numexams++;
+            avgexam+=exams[i];
+        }
+    }
+    avgexam=avgexam/(numexams*100);
+    tempGPA=(avgexam*.72)+(finals*.0028);
+    this->gpa=tempGPA;
 }
 
 void Cot3100::updateExam(int examNum, double score){
-    
+    this->exams[examNum]=score;
 }
 
-void Cot3100::updateFinal(int score){
-    
+void Cot3100::updateFinal(double score){
+    this->finals=score;
 }
