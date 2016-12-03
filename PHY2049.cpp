@@ -62,7 +62,7 @@ void Phy2049::calcGpa() {
 	}
 	avgexam = avgexam / (numexam * 20);
 
-	tempGpa = (avgexam*.75) + (avgHW*.05) + (avgquiz*.2) + (hittPoints*.05);
+	tempGpa = (avgexam*75) + (avgHW*5) + (avgquiz*20) + (hittPoints*.05);
 
     if (tempGpa >= 85) {
         gpa = 4.0;
