@@ -10,7 +10,7 @@ using namespace std;
 string currentCourse;
 
 void toLower(string& str) {
-	for (int i = 0; i < str.size(); i++) {
+	for (int i = 0, length = str.size(); i < length; i++) {
 		if (str[i] > 64 && str[i] < 90) {
 			str[i] = tolower(str[i]);
 		}
@@ -27,7 +27,8 @@ bool areEqualCourses(Course item) {
 }
 
 void CourseManager::addCourse(Course course) {
-	if (search(course.getCourseName()).getCourseName().compare("") == 0) {
+	Course retCourse = *search(course.getCourseName());
+	if (retCourse.getCourseName().compare("") == 0) {
 		courses->push_back(course);
 	}
 	else {
@@ -35,11 +36,18 @@ void CourseManager::addCourse(Course course) {
 	}
 }
 
-void CourseManager::deleteCourse(string courseName) {
+bool CourseManager::deleteCourse(string courseName) {
 	currentCourse = courseName;
-	courses->remove_if(areEqualCourses);
+	if (search(courseName)->getCourseName().compare("") == 0) {
+		return false;
+	}
+	else {
+		courses->remove_if(areEqualCourses);
+		return true;
+	}
 }
 
+//prints summary
 void CourseManager::printCourses() {
 	cout << "Your courses:" << endl;
 	list<Course>::iterator itr;
@@ -49,10 +57,9 @@ void CourseManager::printCourses() {
 		Course printCourse = *itr;
 		printCourse.printCourse();
 	}
-	cout << endl;
 }
 
-
+//prints individual grades
 void CourseManager::printAll() {
 	cout << "Your courses:" << endl;
 	list<Course>::iterator itr;
@@ -62,7 +69,6 @@ void CourseManager::printAll() {
 		Course printCourse = *itr;
 		printCourse.printAll();
 	}
-	cout << endl;
 }
 
 double CourseManager::getGpa() {
@@ -76,14 +82,14 @@ void CourseManager::setGpa(double Gpa, int credits) { //Have to add in credits
 	overallGPA = (totalGradePoints / overallCreditHours);
 }
 
-Course CourseManager::search(string courseName) {
+Course* CourseManager::search(string courseName) {
 	currentCourse = courseName;
 	if (courses->empty())
 	{
 		Course retCourse = *new Course();
 		retCourse.setCourseName("");
 
-		return retCourse;
+		return &retCourse;
 	}
 
 	auto findIter = find_if(courses->begin(), courses->end(), areEqualCourses);
@@ -92,10 +98,10 @@ Course CourseManager::search(string courseName) {
 		Course retCourse = *new Course();
 		retCourse.setCourseName("");
 
-		return retCourse;
+		return &retCourse;
 	}
 	else {
-		return *findIter;
+		return &*findIter;
 	}
 }
 
@@ -112,4 +118,8 @@ Course CourseManager::findAt(int position) {
 	Course retCourse;
 	retCourse.setCourseName("");
 	return retCourse;
+}
+
+bool CourseManager::empty() {
+	return courses->empty();
 }

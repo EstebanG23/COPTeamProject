@@ -8,7 +8,7 @@
 
 using namespace std;
 
-string Course::getCourseName () {
+string Course::getCourseName() {
 	return courseName;
 }
 
@@ -33,7 +33,7 @@ void Course::setGpa(double gpa) {
 }
 
 void Course::printCourse() {
-	cout << courseName.c_str() << ": " << "GPA: " << gpa << ", Credit Hours: " << credits << endl;
+	cout << courseName.c_str() << ": " << "\n\t" << "GPA: " << gpa << ", Credit Hours: " << credits << endl;
 }
 
 void Course::printAll() {

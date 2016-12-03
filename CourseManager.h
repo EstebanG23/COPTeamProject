@@ -16,7 +16,7 @@ public:
 
 	void addCourse(Course course);
 
-	void deleteCourse(string courseName);
+	bool deleteCourse(string courseName);
 
 	void printCourses();
 
@@ -26,7 +26,9 @@ public:
 
 	void setGpa(double gpa, int creditHours);
 
-	Course search(string courseName);
+	Course* search(string courseName);
 
 	Course findAt(int position);
+
+	bool empty();
 };

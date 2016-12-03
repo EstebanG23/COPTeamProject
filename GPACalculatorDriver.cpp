@@ -7,6 +7,7 @@
 #include "PHY2048.h"
 #include "PHY2049.h"
 #include "COT3100.h"
+#include "COP3502.h"
 #include "CHM2045.h"
 #include "CourseManager.h"
 #include "GPACalculatorDriver.h"
@@ -19,8 +20,9 @@ int main() {
 
 	while (menuInput != 7) {
 		cout << "1. Add previous GPA" << endl << "2. Show GPA" << endl << "3. Print courses " << endl
-			<< "4. Add a course " << endl << "5. Edit a course" << endl << "6. Delete a course" << endl << "7. Exit" << endl;
+			<< "4. Add a course " << endl << "5. Edit a course" << endl << "6. Delete a course" << endl << "7. Exit" << endl << endl;
 		menuInput = iv.getInt();
+		cout << endl;
 
 		switch (menuInput) {
 		case 1:
@@ -42,7 +44,7 @@ int main() {
 			deleteCourse();
 			break;
 		default:
-			cout << "Invalid choice" << endl;
+			cout << "Invalid choice" << endl << endl;
 		}
 	}
 }

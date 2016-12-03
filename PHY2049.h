@@ -9,7 +9,7 @@ private:
 public:
 	void calcGpa();
 	void updateExam(int examNum, double score);
-	void updateFinal(int score);
+	void updateFinal(double score);
 	void updateQuiz(int quizNum, double score);
 	void updateHomework(int homeworkNum, double score);
 	void updateHittPoints(double score);

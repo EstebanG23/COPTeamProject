@@ -1,4 +1,4 @@
-//Coure Class
+// Coure Class
 //COP3503TeamProject
 //
 //Created by Sabrina Vega 11/12/16

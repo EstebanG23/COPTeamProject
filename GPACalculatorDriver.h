@@ -7,6 +7,7 @@ CourseManager cm;
 Phy2048 phy2048;
 Phy2049 phy2049;
 Cot3100 cot3100;
+COP3502 cop3502;
 Chm2045 chm2045;
 const string courseNames[] = { "PHY2048", "PHY2049", "COT3100", "COP3502", "COP3503", "CHM2045", "MAC2311", "MAC2312", "MAC2313", "MAS3114" };
 
@@ -22,26 +23,28 @@ double getGPA() {
 	double inputPreviousGPA = NULL;
 
 	do {
-		cout << "Please enter previous GPA: " << endl;
+		cout << "Please enter GPA: " << endl;
 		inputPreviousGPA = iv.getDouble();
 
 		if (inputPreviousGPA < 0 || inputPreviousGPA > 4) {
 			cout << "GPA must be between 0.0 and 4.0" << endl;
 		}
+		cout << endl;
 	} while (inputPreviousGPA < 0 || inputPreviousGPA > 4 || inputPreviousGPA == NULL);
 
 	return inputPreviousGPA;
 }
 
-double getCreditHours() {
-	double inputCreditHours = NULL;
+int getCreditHours() {
+	int inputCreditHours = NULL;
 
 	do {
 		cout << "Please enter previous amount of credit hours: " << endl;
-		inputCreditHours = iv.getDouble();
+		inputCreditHours = iv.getInt();
 		if (inputCreditHours < 0) {
 			cout << "The number of credit hours must be greater than 0" << endl;
 		}
+		cout << endl;
 	} while (inputCreditHours < 0 || inputCreditHours == NULL);
 
 	return inputCreditHours;
@@ -58,6 +61,7 @@ string getCourseName() {
 		if (courseName.empty()) {
 			cout << "Invalid course name: " << courseName.c_str() << endl;
 		}
+		cout << endl;
 	} while (courseName.empty());
 
 	return courseName;
@@ -73,6 +77,7 @@ double getFinalGrade() {
 		if (finalGrade < 0) {
 			cout << "Grade must be greater than 0" << endl;
 		}
+		cout << endl;
 	}
 	return finalGrade;
 }
@@ -86,6 +91,7 @@ double getExamGrade(int examNum) {
 		if (examGrade < 0) {
 			cout << "Grade must be greater than 0" << endl;
 		}
+		cout << endl;
 	}
 
 	return examGrade;
@@ -100,6 +106,7 @@ double getQuizGrade(int quizNum) {
 		if (quizGrade < 0) {
 			cout << "Grade must be greater than 0" << endl;
 		}
+		cout << endl;
 	}
 
 	return quizGrade;
@@ -114,6 +121,7 @@ double getHomeworkGrade(int homeworkNum) {
 		if (homeworkGrade < 0) {
 			cout << "Grade must be greater than 0" << endl;
 		}
+		cout << endl;
 	}
 
 	return homeworkGrade;
@@ -129,8 +137,39 @@ double getHittGrade() {
 		if (hittGrade < 0) {
 			cout << "Grade must be greater than 0" << endl;
 		}
+		cout << endl;
 	}
 	return hittGrade;
+}
+
+double getProgrammingAssignmentGrade(int paNum) {
+	//we introduce a bug if the grade is 0
+	cout << "Please enter the grade for programming assignment " << paNum << ":" << endl;
+	double paGrade = -1;
+
+	while (paGrade < 0) {
+		paGrade = iv.getDouble();
+		if (paGrade < 0) {
+			cout << "Grade must be greater than 0" << endl;
+		}
+		cout << endl;
+	}
+	return paGrade;
+}
+
+double getLabGrade(int labNum) {
+	//we introduce a bug if the grade is 0
+	cout << "Please enter the grade for your lab number " << labNum << ":" << endl;
+	double labGrade = -1;
+
+	while (labGrade < 0) {
+		labGrade = iv.getDouble();
+		if (labGrade < 0) {
+			cout << "Grade must be greater than 0" << endl;
+		}
+		cout << endl;
+	}
+	return labGrade;
 }
 
 
@@ -143,13 +182,8 @@ void addPHY2048() {
 	Course course;
 	course.setCourseName("PHY2048");
 
-	double gpa = getGPA();
-	double creditHours = getCreditHours();
-
-	phy2048.setGpa(gpa);
+	int creditHours = getCreditHours();
 	phy2048.setCredits(creditHours);
-
-	course.setGpa(gpa);
 	course.setCredits(creditHours);
 
 	cm.addCourse(course);
@@ -162,13 +196,9 @@ void addPHY2049() {
 	Course course;
 	course.setCourseName("PHY2049");
 
-	double gpa = getGPA();
-	double creditHours = getCreditHours();
+	int creditHours = getCreditHours();
 
-	phy2049.setGpa(gpa);
 	phy2049.setCredits(creditHours);
-
-	course.setGpa(gpa);
 	course.setCredits(creditHours);
 
 	cm.addCourse(course);
@@ -181,20 +211,27 @@ void addCOT3100() {
 	Course course;
 	course.setCourseName("COT3100");
 
-	double gpa = getGPA();
-	double creditHours = getCreditHours();
+	int creditHours = getCreditHours();
 
-	cot3100.setGpa(gpa);
 	cot3100.setCredits(creditHours);
-
-	course.setGpa(gpa);
 	course.setCredits(creditHours);
 
 	cm.addCourse(course);
 }
 
 void addCOP3502() {
+	cop3502 = *new COP3502();
+	cot3100.setCourseName("COP3502");
 
+	Course course;
+	course.setCourseName("COP3502");
+
+	int creditHours = getCreditHours();
+
+	cop3502.setCredits(creditHours);
+	course.setCredits(creditHours);
+
+	cm.addCourse(course);
 }
 
 void addCOP3503() {
@@ -207,13 +244,8 @@ void addCHM2045() {
 	Course course;
 	course.setCourseName("Chm2045");
 
-	double gpa = getGPA();
-	double creditHours = getCreditHours();
-
-	chm2045.setGpa(gpa);
+	int creditHours = getCreditHours();
 	chm2045.setCredits(creditHours);
-
-	course.setGpa(gpa);
 	course.setCredits(creditHours);
 
 	cm.addCourse(course);
@@ -266,6 +298,10 @@ void editPHY2048() {
 	}
 	//hitt
 	phy2048.updateHittPoints(getHittGrade());
+
+	phy2048.calcGpa();
+	Course* course = cm.search(phy2048.getCourseName());
+	course->setGpa(phy2048.getGpa());
 }
 
 void editPHY2049() {
@@ -285,6 +321,10 @@ void editPHY2049() {
 	}
 	//hitt
 	phy2049.updateHittPoints(getHittGrade());
+
+	phy2049.calcGpa();
+	Course* course = cm.search(phy2049.getCourseName());
+	course->setGpa(phy2049.getGpa());
 }
 
 void editCOT3100() {
@@ -294,10 +334,31 @@ void editCOT3100() {
 	for (int i = 0; i < 4; i++) {
 		cot3100.updateExam(i, getExamGrade(i + 1));
 	}
+
+	cot3100.calcGpa();
+	Course* course = cm.search(cot3100.getCourseName());
+	course->setGpa(cot3100.getGpa());
 }
 
-void editCOP3502(Course* course) {
-
+void editCOP3502() {
+	//finals
+	cop3502.updateFinal(getFinalGrade());
+	//exams
+	for (int i = 0; i < 2; i++) {
+		cop3502.updateExam(i, getExamGrade(i + 1));
+	}
+	//homework
+	for (int i = 0; i < 10; i++) {
+		cop3502.updateHomework(i, getHomeworkGrade(i + 1));
+	}
+	//programming assignments
+	for (int i = 0; i < 3; i++) {
+		cop3502.updateProgAssignments(i, getProgrammingAssignmentGrade(i + 1));
+	}
+	//labs
+	for (int i = 0; i < 10; i++) {
+		cop3502.updateLab(i, getLabGrade(i + 1));
+	}
 }
 
 void editCOP3503(Course* course) {
@@ -357,21 +418,41 @@ void addPreviousGPA() {
 }
 
 void showGPA() {
-	cm.printCourses();
+	//call calc gpa functions
+	//print overall gpa
+	//cm must take into account somehow if a given course's gpa has not been entered yet
+	//	maybe solve this by keeping track of all the courses that have not been edited yet
+	//	create an array to keep track of these values
+	if (cm.empty()) {
+		cout << "There are no courses entered" << endl;
+	}
+	else {
+		cm.printCourses();
+	}
+	cout << endl;
 }
 
 void printCourses() {
-	//cm.printAll()
+	if (cm.empty()) {
+		cout << "There are no courses entered" << endl;
+	}
+	else {
+		//cm.printAll()
+		cout << "Printing all course grade values" << endl;
+	}
+	cout << endl;
 }
 
 void addCourse() {
+	//what happens to grades after they input a course?
+	//how do they calc gpa after they add a course and do not input grades
 	int inputCourse = NULL;
 
 	do {
 		cout << "Please choose from the following courses:" << endl;
 		cout << "1. PHY2048" << endl << "2. PHY2049" << endl << "3. COT3100" << endl
 			<< "4. COP3502" << endl << "5. COP3503" << endl << "6. CHM2045" << endl << "7. MAC2311" << endl << "8. MAC2312" << endl
-			<< "9. MAC2313" << endl << "10. MAS3114" << endl << "11. Custom Course" << endl << "12. Return to main menu" << endl;
+			<< "9. MAC2313" << endl << "10. MAS3114" << endl << "11. Custom Course" << endl << "12. Return to main menu" << endl << endl;
 
 		inputCourse = iv.getInt();
 
@@ -382,7 +463,7 @@ void addCourse() {
 		if (inputCourse == 12) {
 			break;
 		}
-
+		cout << endl;
 	} while (inputCourse < 0 || inputCourse > 12 || inputCourse == NULL);
 
 	switch (inputCourse) {
@@ -423,8 +504,16 @@ void addCourse() {
 }
 
 void editCourse() {
-	cout << "Please enter the number of the course to edit" << endl;
+	//must update the cm course values for gpa whenever we edit
+	//	call calc gpa after every editing?
+	if (cm.empty()) {
+		cout << "There are no courses to edit" << endl << endl;
+		return;
+	}
+
+	cout << "Please enter the number of the course to edit:" << endl;
 	cm.printCourses();
+	cout << endl;
 	int choice = -1;
 	Course course;
 
@@ -436,6 +525,7 @@ void editCourse() {
 			cout << "Invalid input" << endl;
 			choice = -1;
 		}
+		cout << endl;
 	}
 
 	if (course.getCourseName().compare("PHY2048") == 0) {
@@ -448,7 +538,7 @@ void editCourse() {
 		editCOT3100();
 	}
 	else if (course.getCourseName().compare("COP3502") == 0) {
-		editCOP3502(&course);
+		editCOP3502();
 	}
 	else if (course.getCourseName().compare("COP3503") == 0) {
 		editCOP3503(&course);
@@ -474,8 +564,31 @@ void editCourse() {
 }
 
 void deleteCourse() {
+	if (cm.empty()) {
+		cout << "There are no courses to delete" << endl;
+		return;
+	}
+
+	cout << "Please choose from the following courses:" << endl;
 	cm.printCourses();
-	cm.deleteCourse(getCourseName());
+	cout << endl;
+	int choice = -1;
+	Course course;
+
+	while (choice < 1) {
+		choice = iv.getInt();
+		course = cm.findAt(choice - 1);
+
+		if (course.getCourseName().compare("") == 0) {
+			cout << "Invalid input" << endl;
+			choice = -1;
+		}
+	}
+
+	while (!cm.deleteCourse(course.getCourseName())) {
+		cout << "Invalid input" << endl;
+	}
+	cout << endl;
 }
 
 #pragma endregion
