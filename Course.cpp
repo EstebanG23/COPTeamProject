@@ -1,51 +1,41 @@
-//Coure Class
-//COP3503TeamProject
-//
-//Created by Sabrina Vega 11/12/16
-//
-using namespace std;
+#include <iostream>
+#include <stdio.h>
 #include <string>
-
-//Parent class to base our other classes off of 
-class Course {
-	public:
-	
-		Course(): courseName(),credits(), gpa(), exams(),finals() {};
-	
-		string getCourseName() {
-			return courseName;
-		}
-
-		void setCourseName(string courseName) {
-			this->courseName = courseName;
-		}
-
-		int getCredits() {
-			return credits;
-		}
-
-		void setCredits(int credits) {
-			this->credits = credits;
-		}
-
-		double getGpa() {
-			return gpa;
-		}
-
-		void setGpa(double gpa) {
-			this->gpa = gpa;
-		}
-
-		void calcGpa() {
-			
-		}
+#include <list>
+#include <algorithm>
+#include "Course.h"
 
 
-	protected:
-		string courseName;
-		int credits;
-		double gpa;
-		double exams[20];
-		double finals;
-};
+using namespace std;
 
+string Course::getCourseName () {
+	return courseName;
+}
+
+void Course::setCourseName(string courseName) {
+	this->courseName = courseName;
+}
+
+int Course::getCredits() {
+	return credits;
+}
+
+void Course::setCredits(int credits) {
+	this->credits = credits;
+}
+
+double Course::getGpa() {
+	return gpa;
+}
+
+void Course::setGpa(double gpa) {
+	this->gpa = gpa;
+}
+
+void Course::printCourse() {
+	cout << courseName.c_str() << ": " << "GPA: " << gpa << ", Credit Hours: " << credits << endl;
+}
+
+void Course::printAll() {
+	printCourse();
+}

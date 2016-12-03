@@ -4,6 +4,19 @@
 
 using namespace std;
 
+//this checks if cin failed and acts accordingly
+bool checkIfCinFailed()
+{
+	//clears error flags and ignores the next 256 characters or until the '\n' character
+	//returns a bool if cin failed
+	if (cin.fail()) {
+		cin.clear();
+		cin.ignore(256, '\n');
+		return true;
+	}
+	return false;
+}
+
 string InputValidator::getString()
 {
 	string inputString;
@@ -22,7 +35,7 @@ int InputValidator::getInt()
 	if (checkIfCinFailed())
 	{
 		cerr << endl << "Error: the input must be a valid integer" << endl;
-		return -1;
+		return NULL;
 	}
 	else
 	{
@@ -42,7 +55,7 @@ double InputValidator::getDouble()
 	if (checkIfCinFailed())
 	{
 		cerr << endl << "Error: the input must be a valid double" << endl;
-		return -1;
+		return NULL;
 	}
 	else
 	{
@@ -51,25 +64,4 @@ double InputValidator::getDouble()
 		cin.ignore(256, '\n');
 		return inputDouble;
 	}
-}
-
-int main() {
-	InputValidator iv;
-	int input = 0;
-	while (input != 4)
-	{
-		input = iv.getInt();
-		switch (input) {
-		case 1:
-			cout << iv.getDouble() << endl;
-			break;
-		case 2:
-			cout << iv.getInt() << endl;
-			break;
-		case 3:
-			cout << iv.getString().c_str() << endl;
-			break;
-		}
-	}
-	return 0;
 }
