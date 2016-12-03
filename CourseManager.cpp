@@ -27,8 +27,8 @@ bool areEqualCourses(Course item) {
 }
 
 void CourseManager::addCourse(Course course) {
-	Course retCourse = *search(course.getCourseName());
-	if (retCourse.getCourseName().compare("") == 0) {
+	Course *retCourse = search(course.getCourseName());
+	if (retCourse->getCourseName().compare("") == 0) {
 		courses->push_back(course);
 	}
 	else {
@@ -86,19 +86,19 @@ Course* CourseManager::search(string courseName) {
 	currentCourse = courseName;
 	if (courses->empty())
 	{
-		Course retCourse = *new Course();
-		retCourse.setCourseName("");
+		Course* retCourse = new Course();
+		retCourse->setCourseName("");
 
-		return &retCourse;
+		return retCourse;
 	}
 
 	auto findIter = find_if(courses->begin(), courses->end(), areEqualCourses);
 
 	if (findIter == courses->end()) {
-		Course retCourse = *new Course();
-		retCourse.setCourseName("");
+		Course* retCourse = new Course();
+		retCourse->setCourseName("");
 
-		return &retCourse;
+		return retCourse;
 	}
 	else {
 		return &*findIter;
