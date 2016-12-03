@@ -8,10 +8,11 @@
 
 #include <stdio.h>
 #include <string>
+#include <array>
+#include <iostream>
 #include "CHM2045.h"
-
-
 using namespace std;
+
 
 Chm2045::Chm2045() {
 	for (int i = 0; i<20; i++) {
@@ -61,4 +62,24 @@ void Chm2045::updateHomework(int homeworkNum, double score) {
 
 void Chm2045::updateHittPoints(double score) {
 	this->hittPoints = score;
+}
+
+void Chm2045::printAll()
+{
+	cout << "Homework: " << endl;
+	for (size_t i = 0; i < homework.size(); i++) {
+		cout << i + 1 << ". " << homework[i] << endl;
+	}
+	cout << endl;
+	cout << "Hittpoints: " << hittPoints << endl;
+	cout << endl;
+	cout << "Exams: " << endl;
+	
+	for (size_t i = 0; i < exams.size(); i++) {
+		cout << i + 1 << ". " << exams[i] << endl;
+	}
+	cout << endl;
+	cout << "Finals: " <<finals << endl;
+	cout << endl;
+	
 }

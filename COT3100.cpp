@@ -8,7 +8,14 @@
 
 #include <stdio.h>
 #include <string>
+
+#include <iostream>
+#include <array>
 #include "COT3100.h"
+
+using namespace std;
+
+
 
 Cot3100::Cot3100() {
 	for (int i = 0; i<20; i++) {
@@ -37,4 +44,15 @@ void Cot3100::updateExam(int examNum, double score) {
 
 void Cot3100::updateFinal(double score) {
 	this->finals = score;
+}
+void Cot3100::printAll()
+{
+	cout << "Exams: " << endl;
+	for (size_t i = 0; i < exams.size(); i++) {
+		cout << i + 1 << ". " << exams[i] << endl;
+	}
+	cout << endl;
+	cout << "Finals: " << finals << endl;
+	cout << endl;
+
 }

@@ -8,6 +8,7 @@
 
 #include <iostream>
 #include <string>
+#include <array>
 #include "PHY2048.h"
 
 Phy2048::Phy2048() {
@@ -87,5 +88,25 @@ void Phy2048::updateHittPoints(double score) {
 }
 
 void Phy2048::printAll() {
+	cout << "Homework: " << endl;
+	for (size_t i = 0; i < homework.size(); i++) {
+		cout << i + 1 << ". " << homework[i] << endl;
+	}
+	cout << endl;
+	cout << "Hittpoints: " << hittPoints << endl;
+	cout << endl;
 
+	cout << "Exams: " << endl;
+	for (size_t i = 0; i < exams.size(); i++) {
+		cout << i + 1 << ". " << exams[i] << endl;
+	}
+	cout << endl;
+
+	cout << "Quizzes: " << endl;
+	for (size_t i = 0; i < quizzes.size(); i++) {
+		cout << i + 1 << ". " << quizzes[i] << endl;
+	}
+	cout << endl;
+	cout << "Finals: " << finals << endl;
+	cout << endl;
 }

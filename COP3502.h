@@ -1,19 +1,19 @@
 #include "Course.h"
-#include <array>
 
-class Phy2048 : public Course {
+class COP3502 : public Course {
 private:
-	array<double, 10> quizzes;
 	array<double, 20> homework;
-	double hittPoints;
+	array<double, 20> progAssignments;
+	array<double, 20> labs;
+
 
 public:
 	void calcGpa();
 	void updateExam(int examNum, double score);
 	void updateFinal(double score);
-	void updateQuiz(int quizNum, double score);
 	void updateHomework(int homeworkNum, double score);
-	void updateHittPoints(double score);
+	void updateLab(int hittNum, double score);
+	void updateProgAssignments(int progNum, double score);
 	void printAll();
-	Phy2048();
+	COP3502();
 };

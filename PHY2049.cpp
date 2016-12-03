@@ -1,4 +1,4 @@
-//
+﻿//
 //  PHY2049.cpp
 //  COPTeamProject
 //
@@ -9,6 +9,8 @@
 #include <stdio.h>
 #include <string>
 #include "PHY2049.h"
+#include <iostream>
+#include <array>
 
 Phy2049::Phy2049() {
 	for (int i = 0; i<20; i++) {
@@ -84,4 +86,28 @@ void Phy2049::updateHomework(int homeworkNum, double score) {
 
 void Phy2049::updateHittPoints(double score) {
 	this->hittPoints = score;
+}
+
+void Phy2049::printAll(){
+	cout << "Homework: " << endl;
+	for (size_t i = 0; i < homework.size(); i++) {
+		cout << i + 1 << ". " << homework[i] << endl;
+	}
+	cout << endl;
+	cout << "Hittpoints: " << hittPoints << endl;
+	cout << endl;
+
+	cout << "Exams: " << endl;
+	for (size_t i = 0; i < exams.size(); i++) {
+		cout << i + 1 << ". " << exams[i] << endl;
+	}
+	cout << endl;
+
+	cout << "Quizzes: " << endl;
+	for (size_t i = 0; i < quizzes.size(); i++) {
+		cout << i + 1 << ". " << quizzes[i] << endl;
+	}
+	cout << endl;
+	cout << "Finals: " << finals << endl;
+	cout << endl;
 }

@@ -2,7 +2,7 @@
 
 class Chm2045 : public Course {
 private:
-	double homework[20];
+	array<double, 20> homework;
 	double hittPoints;
 
 public:
@@ -11,5 +11,6 @@ public:
 	void updateFinal(int score);
 	void updateHomework(int homeworkNum, double score);
 	void updateHittPoints(double score);
+	void printAll();
 	Chm2045();
 };

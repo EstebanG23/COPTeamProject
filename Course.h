@@ -8,6 +8,7 @@
 
 using namespace std;
 #include <string>
+#include <array>
 
 //Parent class to base our other classes off of 
 class Course {
@@ -38,7 +39,7 @@ protected:
 	string courseName;
 	int credits;
 	double gpa;
-	double exams[20];
+	array<double, 20> exams;
 	double finals;
 };
 
