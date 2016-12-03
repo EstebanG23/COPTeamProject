@@ -3,7 +3,7 @@
 //  COPTeamProject
 //
 //  Created by Esteban Gonzalez on 11/12/16.
-//  Copyright © 2016 Esteban Gonzalez. All rights reserved.
+//  Copyright ï¿½ 2016 Esteban Gonzalez. All rights reserved.
 //
 
 #include <stdio.h>
@@ -81,8 +81,42 @@ void COP3502::calcGpa() {
 	avgexams = avgexams / numexams;
 
 	tempGPA = (avgHW*.20) + (avgProg*.20) + (avgLabs*.1) + (avgexams*.5);
-
-	this->gpa = tempGPA;
+    if (tempGPA >= 95) {
+        gpa = 4.0;
+    }
+    else if (tempGPA >= 90 && tempGPA < 94) {
+        gpa = 3.67;
+    }
+    else if (tempGPA >= 87 && tempGPA < 89) {
+        gpa = 3.33;
+    }
+    else if (tempGPA >= 83 && tempGPA < 86) {
+        gpa = 3;
+    }
+    else if (tempGPA >= 80 && tempGPA < 82) {
+        gpa = 2.67;
+    }
+    else if (tempGPA >= 77 && tempGPA < 79) {
+        gpa = 2.33;
+    }
+    else if (tempGPA >= 73 && tempGPA < 76) {
+        gpa = 2;
+    }
+    else if (tempGPA >= 70 && tempGPA < 72) {
+        gpa = 1.67;
+    }
+    else if (tempGPA >= 67 && tempGPA < 69) {
+        gpa = 1.33;
+    }
+    else if (tempGPA >= 63 && tempGPA < 66) {
+        gpa = 1;
+    }
+    else if (tempGPA >= 60 && tempGPA < 62) {
+        gpa = 0.67;
+    }
+    else {
+        gpa = 0;
+    }
 }
 
 void COP3502::updateExam(int examNum, double score) {

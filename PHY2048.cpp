@@ -3,7 +3,7 @@
 //  COPTeamProject
 //
 //  Created by Esteban Gonzalez on 11/12/16.
-//  Copyright © 2016 Esteban Gonzalez. All rights reserved.
+//  Copyright ï¿½ 2016 Esteban Gonzalez. All rights reserved.
 //
 
 #include <iostream>
@@ -63,8 +63,42 @@ void Phy2048::calcGpa() {
 
 	tempGpa = (avgexam*.75) + (avgHW*.05) + (avgquiz*.2) + (hittPoints*.05);
 
-
-	this->gpa = tempGpa;
+    if (tempGpa >= 85) {
+        gpa = 4.0;
+    }
+    else if (tempGpa >= 80 && tempGpa < 85) {
+        gpa = 3.67;
+    }
+    else if (tempGpa >= 75 && tempGpa < 80) {
+        gpa = 3.33;
+    }
+    else if (tempGpa >= 70 && tempGpa < 75) {
+        gpa = 3;
+    }
+    else if (tempGpa >= 65 && tempGpa < 70) {
+        gpa = 2.67;
+    }
+    else if (tempGpa >= 60 && tempGpa < 65) {
+        gpa = 2.33;
+    }
+    else if (tempGpa >= 55 && tempGpa < 60) {
+        gpa = 2;
+    }
+    else if (tempGpa >= 50 && tempGpa < 55) {
+        gpa = 1.67;
+    }
+    else if (tempGpa >= 45 && tempGpa < 50) {
+        gpa = 1.33;
+    }
+    else if (tempGpa >= 40 && tempGpa < 45) {
+        gpa = 1;
+    }
+    else if (tempGpa >= 35 && tempGpa < 40) {
+        gpa = 0.67;
+    }
+    else {
+        gpa = 0;
+    }
 }
 
 void Phy2048::updateExam(int examNum, double score) {
