@@ -33,8 +33,8 @@ void Cot3100::calcGpa() {
 			avgexam += exams[i];
 		}
 	}
-	avgexam = avgexam / (numexams * 100);
-	tempGPA = (avgexam*.72) + (finals*.0028);
+	avgexam = avgexam / numexams;
+	tempGPA = (avgexam*.72) + (finals*.28);
     
     if (tempGPA >= 93) {
         gpa = 4.0;

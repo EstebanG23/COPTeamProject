@@ -81,6 +81,7 @@ void COP3502::calcGpa() {
 	avgexams = avgexams / numexams;
 
 	tempGPA = (avgHW*.20) + (avgProg*.20) + (avgLabs*.1) + (avgexams*.5);
+    
     if (tempGPA >= 95) {
         gpa = 4.0;
     }
