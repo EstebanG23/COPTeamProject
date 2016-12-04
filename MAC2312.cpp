@@ -1,8 +1,7 @@
-
 #include "MAC2312.h"
 
-	//constructor initializes everything to -1
-	MAC2312::MAC2312() {
+//constructor initializes everything to -1
+MAC2312::MAC2312() {
 	hittPoints = -1;
 	participation = -1;
 	webAssign = -1;

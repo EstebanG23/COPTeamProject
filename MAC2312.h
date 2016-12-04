@@ -18,7 +18,7 @@ private:
 	array<double, 8> tempQuizzes;
 	double writtenHomework[3]; //3 collected, 5 points each
 	array<double, 3> tempWrittenHomework;
-	
+
 public:
 	MAC2312();
 	void calcGpa();

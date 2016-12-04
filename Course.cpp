@@ -33,7 +33,12 @@ void Course::setGpa(double gpa) {
 }
 
 void Course::printCourse() {
-	cout << courseName.c_str() << ": " << "\n\t" << "GPA: " << gpa << ", Credit Hours: " << credits << endl;
+	if (gpa < 0) {
+		cout << courseName.c_str() << ": " << "\n\t" << "GPA: N/A" << ", Credit Hours: " << credits << endl;
+	}
+	else {
+		cout << courseName.c_str() << ": " << "\n\t" << "GPA: " << gpa << ", Credit Hours: " << credits << endl;
+	}
 }
 
 void Course::printAll() {

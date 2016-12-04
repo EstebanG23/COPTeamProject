@@ -6,7 +6,7 @@ private:
 	double hittPoints;
 
 public:
-	void calcGpa();
+	void calcGpa() override;
 	void updateExam(int examNum, double score);
 	void updateFinal(double score);
 	void updateHomework(int homeworkNum, double score);

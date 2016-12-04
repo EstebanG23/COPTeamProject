@@ -35,7 +35,7 @@ int InputValidator::getInt()
 	if (checkIfCinFailed())
 	{
 		cerr << endl << "Error: the input must be a valid integer" << endl;
-		return NULL;
+		return -1;
 	}
 	else
 	{
@@ -55,7 +55,7 @@ double InputValidator::getDouble()
 	if (checkIfCinFailed())
 	{
 		cerr << endl << "Error: the input must be a valid double" << endl;
-		return NULL;
+		return -1;
 	}
 	else
 	{

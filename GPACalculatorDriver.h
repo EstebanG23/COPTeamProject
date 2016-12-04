@@ -892,7 +892,7 @@ void deleteCourse() {
 		cop3502 = *new COP3502();
 	}
 	else if (course->getCourseName().compare("COP3503") == 0) {
-		//cop3503 = *new COP3503();
+		cop3503 = *new COP3503();
 	}
 	else if (course->getCourseName().compare("CHM2045") == 0) {
 		chm2045 = *new Chm2045();
@@ -904,10 +904,10 @@ void deleteCourse() {
 		mac2312 = *new MAC2312();
 	}
 	else if (course->getCourseName().compare("MAC2313") == 0) {
-		//mac2313 = *new MAC2313();
+		mac2313 = *new MAC2313();
 	}
 	else if (course->getCourseName().compare("MAS3114") == 0) {
-		//mas3114 = *new MAS3114();
+		mas3114 = *new MAS3114();
 	}
 
 	cm.deleteCourse(course->getCourseName());

@@ -47,7 +47,7 @@ double MAS3114::pointSummer(double grades[], int arraySize) {
 }
 double MAS3114::examPointSummer(array<double, 20> examGrades) {
 	double total = 0;
-	for (int i = 0; i < examGrades.size(); i++) {
+	for (size_t i = 0; i < examGrades.size(); i++) {
 		//this check makes it so only grades that have been entered are added to the total
 		if (examGrades[i] != -1) {
 			total += examGrades[i];
@@ -193,6 +193,6 @@ void MAS3114::printAll()
 
 	}
 	cout << endl;
-	
+
 
 }

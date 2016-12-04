@@ -52,17 +52,17 @@ void Phy2049::calcGpa() {
 			avgexam += exams[i];
 		}
 	}
-	avgquiz = (avgquiz / numquiz)/.9;
+	avgquiz = (avgquiz / numquiz) / .9;
 	if (avgquiz>100) {
 		avgquiz = 100;
 	}
-	avgHW = (avgHW / numHW)/.9;
+	avgHW = (avgHW / numHW) / .9;
 	if (avgHW>100) {
 		avgHW = 100;
 	}
 	avgexam = avgexam / numexam;
 
-	tempGpa = (avgexam * .5) + (avgHW * .05) + (avgquiz * .20) + (hittPoints*.05)+(finals*.25);
+	tempGpa = (avgexam * .5) + (avgHW * .05) + (avgquiz * .20) + (hittPoints*.05) + (finals*.25);
 
 	if (tempGpa >= 85) {
 		gpa = 4.0;
