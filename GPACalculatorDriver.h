@@ -12,7 +12,7 @@ Chm2045 chm2045;
 MAC2311 mac2311;
 MAC2312 mac2312;
 MAC2313 mac2313;
-const string courseNames[] = { "PHY2048", "PHY2049", "COT3100", "COP3502", "COP3503", "CHM2045", "MAC2311", "MAC2312", "MAC2313", "MAS3114" };
+MAS3114 mas3114;
 
 #pragma endregion
 
@@ -104,6 +104,21 @@ double getExamGrade(int examNum) {
 
 double getQuizGrade(int quizNum) {
 	cout << "Please enter the grade for quiz " << quizNum << endl;
+	double quizGrade = -1;
+
+	while (quizGrade < 0) {
+		quizGrade = iv.getDouble();
+		if (quizGrade < 0) {
+			cout << "Grade must be 0 or greater" << endl;
+		}
+		cout << endl;
+	}
+
+	return quizGrade;
+}
+
+double getQuizGrade() {
+	cout << "Please enter the grade for your quiz:" << endl;
 	double quizGrade = -1;
 
 	while (quizGrade < 0) {
@@ -222,6 +237,21 @@ double getParticipationGrade() {
 	return participationGrade;
 }
 
+double getProjectGrade(int projectNum) {
+	//we introduce a bug if the grade is 0
+	cout << "Please enter the grade for your project grade number " << projectNum << ":" << endl;
+	double projectGrade = -1;
+
+	while (projectGrade < 0) {
+		projectGrade = iv.getDouble();
+		if (projectGrade < 0) {
+			cout << "Grade must be 0 or greater" << endl;
+		}
+		cout << endl;
+	}
+	return projectGrade;
+}
+
 void printAllGrades() {
 	if (phy2048.getGpa() > -1) {
 		phy2048.printAll();
@@ -250,9 +280,9 @@ void printAllGrades() {
 	if (mac2313.getGpa() > -1) {
 		mac2313.printAll();
 	}
-	/*if (mas3114.getGpa() > -1) {
+	if (mas3114.getGpa() > -1) {
 		mas3114.printAll();
-	}*/
+	}
 }
 
 #pragma endregion
@@ -381,7 +411,18 @@ void addMAC2313() {
 }
 
 void addMAS3114() {
+	mas3114 = *new MAS3114();
+	mas3114.setCourseName("MAS3114");
 
+	Course course;
+	course.setCourseName("MAS3114");
+
+	int creditHours = getCreditHours();
+
+	mas3114.setCredits(creditHours);
+	course.setCredits(creditHours);
+
+	cm.addCourse(course);
 }
 
 void addCustomCourse() {
@@ -583,8 +624,27 @@ void editMAC2313() {
 	course->setGpa(mac2313.getGpa());
 }
 
-void editMAS3114(Course* course) {
+void editMAS3114() {
+	//exams
+	for (int i = 0; i < 4; i++) {
+		mas3114.updateExams(i, getExamGrade(i + 1));
+	}
+	//quiz
+	mas3114.updateQuiz(getQuizGrade());
+	//homework
+	for (int i = 0; i < 30; i++) {
+		mas3114.updateHomework(i, getHomeworkGrade(i + 1));
+	}
+	//projects
+	for (int i = 0; i < 5; i++) {
+		mas3114.updateProjects(i, getProjectGrade(i + 1));
+	}
+	//participation
+	mas3114.updateParticipation(getParticipationGrade());
 
+	mas3114.calcGpa();
+	Course* course = cm.search(mas3114.getCourseName());
+	course->setGpa(mas3114.getGpa());
 }
 
 void editCustomCourse(Course* course) {
@@ -749,7 +809,7 @@ void editCourse() {
 		editMAC2313();
 	}
 	else if (course->getCourseName().compare("MAS3114") == 0) {
-		editMAS3114(course);
+		editMAS3114();
 	}
 	else {
 		editCustomCourse(course);
