@@ -9,6 +9,8 @@
 #include "COT3100.h"
 #include "COP3502.h"
 #include "CHM2045.h"
+#include "MAC2311.h"
+#include "MAC2312.h"
 #include "CourseManager.h"
 #include "GPACalculatorDriver.h"
 

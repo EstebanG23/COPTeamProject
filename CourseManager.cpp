@@ -36,21 +36,20 @@ void CourseManager::addCourse(Course course) {
 	}
 }
 
-bool CourseManager::deleteCourse(string courseName) {
+void CourseManager::deleteCourse(string courseName) {
 	currentCourse = courseName;
-	if (search(courseName)->getCourseName().compare("") == 0) {
-		return false;
-	}
-	else {
-		courses->remove_if(areEqualCourses);
-		return true;
-	}
+	courses->remove_if(areEqualCourses);
 }
 
 //prints summary
 void CourseManager::printCourses() {
-
-	cout << "Your overal GPA: " << calcOverallGPA() << endl;
+	int gpa = calcOverallGPA();
+	if (gpa < 0) {
+		cout << "Your overal GPA: N/A" << endl;
+	}
+	else {
+		cout << "Your overal GPA: " << calcOverallGPA() << endl;
+	}
 	cout << "Your courses:" << endl;
 	list<Course>::iterator itr;
 	int count = 1;
@@ -78,6 +77,9 @@ double CourseManager::getGpa() {
 }
 
 double CourseManager::calcOverallGPA() {
+	overallCreditHours = 0;
+	overallGPA = 0;
+	totalGradePoints = 0;
 	list<Course>::iterator itr;
 	for (itr = courses->begin(); itr != courses->end(); itr++) {
 		Course course = *itr;
@@ -86,7 +88,12 @@ double CourseManager::calcOverallGPA() {
 			totalGradePoints += course.getCredits() * course.getGpa();
 		}
 	}
-	overallGPA = totalGradePoints / overallCreditHours;
+	if (overallCreditHours == 0) {
+		overallGPA = -1;
+	}
+	else {
+		overallGPA = totalGradePoints / overallCreditHours;
+	}
 	return overallGPA;
 }
 

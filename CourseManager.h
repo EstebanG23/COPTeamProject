@@ -18,7 +18,7 @@ public:
 
 	void addCourse(Course course);
 
-	bool deleteCourse(string courseName);
+	void deleteCourse(string courseName);
 
 	void printCourses();
 

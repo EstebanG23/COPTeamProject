@@ -9,6 +9,8 @@ Phy2049 phy2049;
 Cot3100 cot3100;
 COP3502 cop3502;
 Chm2045 chm2045;
+MAC2311 mac2311;
+MAC2312 mac2312;
 const string courseNames[] = { "PHY2048", "PHY2049", "COT3100", "COP3502", "COP3503", "CHM2045", "MAC2311", "MAC2312", "MAC2313", "MAS3114" };
 
 #pragma endregion
@@ -39,7 +41,7 @@ int getCreditHours() {
 	int inputCreditHours = NULL;
 
 	do {
-		cout << "Please enter previous amount of credit hours: " << endl;
+		cout << "Please enter the amount of credit hours: " << endl;
 		inputCreditHours = iv.getInt();
 		if (inputCreditHours < 0) {
 			cout << "The number of credit hours must be greater than 0" << endl;
@@ -69,7 +71,7 @@ string getCourseName() {
 
 double getFinalGrade() {
 	//we introduce a bug if the grade is 0
-	cout << "Please enter the percentage grade for your final exam:" << endl;
+	cout << "Please enter the grade for the final:" << endl;
 	double finalGrade = -1;
 
 	while (finalGrade < 0) {
@@ -83,7 +85,7 @@ double getFinalGrade() {
 }
 
 double getExamGrade(int examNum) {
-	cout << "Please enter the percentage grade for your exam " << examNum << endl;
+	cout << "Please enter the grade for exam " << examNum << endl;
 	double examGrade = -1;
 
 	while (examGrade < 0) {
@@ -98,7 +100,7 @@ double getExamGrade(int examNum) {
 }
 
 double getQuizGrade(int quizNum) {
-	cout << "Please enter the percentage grade for your quiz " << quizNum << endl;
+	cout << "Please enter the grade for quiz " << quizNum << endl;
 	double quizGrade = -1;
 
 	while (quizGrade < 0) {
@@ -113,7 +115,7 @@ double getQuizGrade(int quizNum) {
 }
 
 double getHomeworkGrade(int homeworkNum) {
-	cout << "Please enter the percentage grade for your homework " << homeworkNum << endl;
+	cout << "Please enter the grade for homework " << homeworkNum << endl;
 	double homeworkGrade = -1;
 
 	while (homeworkGrade < 0) {
@@ -129,7 +131,7 @@ double getHomeworkGrade(int homeworkNum) {
 
 double getHittGrade() {
 	//we introduce a bug if the grade is 0
-	cout << "Please enter the percentage grade for your hitt clicker points:" << endl;
+	cout << "Please enter the grade for your hitt clicker points:" << endl;
 	double hittGrade = -1;
 
 	while (hittGrade < 0) {
@@ -144,7 +146,7 @@ double getHittGrade() {
 
 double getProgrammingAssignmentGrade(int paNum) {
 	//we introduce a bug if the grade is 0
-	cout << "Please enter the percentage grade for your programming assignment " << paNum << ":" << endl;
+	cout << "Please enter the grade for programming assignment " << paNum << ":" << endl;
 	double paGrade = -1;
 
 	while (paGrade < 0) {
@@ -159,7 +161,7 @@ double getProgrammingAssignmentGrade(int paNum) {
 
 double getLabGrade(int labNum) {
 	//we introduce a bug if the grade is 0
-	cout << "Please enter the percentage grade for your lab number " << labNum << ":" << endl;
+	cout << "Please enter the grade for your lab number " << labNum << ":" << endl;
 	double labGrade = -1;
 
 	while (labGrade < 0) {
@@ -170,6 +172,36 @@ double getLabGrade(int labNum) {
 		cout << endl;
 	}
 	return labGrade;
+}
+
+double getWebAssignGrade(int waNum) {
+	//we introduce a bug if the grade is 0
+	cout << "Please enter the grade for your web assign number " << waNum << ":" << endl;
+	double waGrade = -1;
+
+	while (waGrade < 0) {
+		waGrade = iv.getDouble();
+		if (waGrade < 0) {
+			cout << "Grade must be greater than 0" << endl;
+		}
+		cout << endl;
+	}
+	return waGrade;
+}
+
+double getWebAssignGrade() {
+	//we introduce a bug if the grade is 0
+	cout << "Please enter the grade for your web assign:" << endl;
+	double waGrade = -1;
+
+	while (waGrade < 0) {
+		waGrade = iv.getDouble();
+		if (waGrade < 0) {
+			cout << "Grade must be greater than 0" << endl;
+		}
+		cout << endl;
+	}
+	return waGrade;
 }
 
 void printAllGrades() {
@@ -284,11 +316,33 @@ void addCHM2045() {
 }
 
 void addMAC2311() {
+	mac2311 = *new MAC2311();
+	mac2311.setCourseName("MAC2311");
 
+	Course course;
+	course.setCourseName("MAC2311");
+
+	int creditHours = getCreditHours();
+
+	mac2311.setCredits(creditHours);
+	course.setCredits(creditHours);
+
+	cm.addCourse(course);
 }
 
 void addMAC2312() {
+	mac2312 = *new MAC2312();
+	mac2312.setCourseName("MAC2312");
 
+	Course course;
+	course.setCourseName("MAC2312");
+
+	int creditHours = getCreditHours();
+
+	mac2312.setCredits(creditHours);
+	course.setCredits(creditHours);
+
+	cm.addCourse(course);
 }
 
 void addMAC2313() {
@@ -416,19 +470,61 @@ void editCHM2045() {
 	//hitt
 	chm2045.updateHittPoints(getHittGrade());
 
-
-
 	chm2045.calcGpa();
 	Course* course = cm.search(chm2045.getCourseName());
 	course->setGpa(chm2045.getGpa());
 }
 
-void editMAC2311(Course* course) {
+void editMAC2311() {
+	//finals
+	mac2311.updateFinal(getFinalGrade());
+	//exams
+	for (int i = 0; i < 3; i++) {
+		mac2311.updateExam(i, getExamGrade(i + 1));
+	}
+	//quizes
+	for (int i = 0; i < 10; i++) {
+		mac2311.updateQuiz(i, getQuizGrade(i + 1));
+	}
+	//written homework
+	for (int i = 0; i < 5; i++) {
+		mac2311.updateWrittenHomework(i, getHomeworkGrade(i + 1));
+	}
+	//hitt
+	mac2311.updateHittPoints(getHittGrade());
+	//webassign
+	for (int i = 0; i < 13; i++) {
+		mac2311.updateWebAssign(i, getWebAssignGrade(i + 1));
+	}
 
+	mac2311.calcGpa();
+	Course* course = cm.search(mac2311.getCourseName());
+	course->setGpa(mac2311.getGpa());
 }
 
-void editMAC2312(Course* course) {
+void editMAC2312() {
+	//finals
+	mac2312.updateFinal(getFinalGrade());
+	//exams
+	for (int i = 0; i < 3; i++) {
+		mac2312.updateExam(i, getExamGrade(i + 1));
+	}
+	//quizes
+	for (int i = 0; i < 8; i++) {
+		mac2312.updateQuiz(i, getQuizGrade(i + 1));
+	}
+	//written homework
+	for (int i = 0; i < 3; i++) {
+		mac2312.updateWrittenHomework(i, getHomeworkGrade(i + 1));
+	}
+	//hitt
+	mac2312.updateHittPoints(getHittGrade());
+	//webassign
+	mac2312.updateWebAssign(getWebAssignGrade());
 
+	mac2312.calcGpa();
+	Course* course = cm.search(mac2312.getCourseName());
+	course->setGpa(mac2312.getGpa());
 }
 
 void editMAC2313(Course* course) {
@@ -590,10 +686,10 @@ void editCourse() {
 		editCHM2045();
 	}
 	else if (course.getCourseName().compare("MAC2311") == 0) {
-		editMAC2311(&course);
+		editMAC2311();
 	}
 	else if (course.getCourseName().compare("MAC2312") == 0) {
-		editMAC2312(&course);
+		editMAC2312();
 	}
 	else if (course.getCourseName().compare("MAC2313") == 0) {
 		editMAC2313(&course);
@@ -627,11 +723,40 @@ void deleteCourse() {
 			choice = -1;
 		}
 	}
-
-	while (!cm.deleteCourse(course.getCourseName())) {
-		cout << "Invalid input" << endl;
-	}
 	cout << endl;
+
+	if (course.getCourseName().compare("PHY2048") == 0) {
+		phy2048 = *new Phy2048();
+	}
+	else if (course.getCourseName().compare("PHY2049") == 0) {
+		phy2049 = *new Phy2049();
+	}
+	else if (course.getCourseName().compare("COT3100") == 0) {
+		cot3100 = *new Cot3100();
+	}
+	else if (course.getCourseName().compare("COP3502") == 0) {
+		cop3502 = *new COP3502();
+	}
+	else if (course.getCourseName().compare("COP3503") == 0) {
+		//cop3503 = *new COP3503();
+	}
+	else if (course.getCourseName().compare("CHM2045") == 0) {
+		chm2045 = *new Chm2045();
+	}
+	else if (course.getCourseName().compare("MAC2311") == 0) {
+		mac2311 = *new MAC2311();
+	}
+	else if (course.getCourseName().compare("MAC2312") == 0) {
+		mac2312 = *new MAC2312();
+	}
+	else if (course.getCourseName().compare("MAC2313") == 0) {
+		//mac2313 = *new MAC2313();
+	}
+	else if (course.getCourseName().compare("MAS3114") == 0) {
+		//mas3114 = *new MAS3114();
+	}
+
+	cm.deleteCourse(course.getCourseName());
 }
 
 #pragma endregion
