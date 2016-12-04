@@ -273,7 +273,9 @@ void MAC2311::calcGpa() {
 }
 void MAC2311::printAll()
 {
+	
 	cout << courseName << endl;
+	cout << endl;
 	cout << "Hittpoints: " << hittPoints << endl;
 	cout << endl;
 
@@ -299,13 +301,6 @@ void MAC2311::printAll()
 			cout << i + 1 << ". " << writtenHomeworkPrint[i] << endl;
 		}
 	}
-
-	cout << "Exams: " << endl;
-	for (size_t i = 0; i < examsPrint.size(); i++) {
-		if (examsPrint[i] >= 0) {
-			cout << i + 1 << ". " << examsPrint[i] << endl;
-		}
-	}
 	cout << endl;
 
 	cout << "Exams: " << endl;
@@ -314,7 +309,7 @@ void MAC2311::printAll()
 			cout << i + 1 << ". " << examsPrint[i] << endl;
 		}
 	}
-
+	
 
 	cout << endl;
 	cout << "Finals: " << finals << endl;
