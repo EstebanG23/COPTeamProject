@@ -13,6 +13,7 @@ MAC2311 mac2311;
 MAC2312 mac2312;
 MAC2313 mac2313;
 MAS3114 mas3114;
+COP3503 cop3503;
 
 #pragma endregion
 
@@ -252,6 +253,21 @@ double getProjectGrade(int projectNum) {
 	return projectGrade;
 }
 
+double getTermProject() {
+	//we introduce a bug if the grade is 0
+	cout << "Please enter the grade for your term project:" << endl;
+	double termProjectGrade = -1;
+
+	while (termProjectGrade < 0) {
+		termProjectGrade = iv.getDouble();
+		if (termProjectGrade < 0) {
+			cout << "Grade must be 0 or greater" << endl;
+		}
+		cout << endl;
+	}
+	return termProjectGrade;
+}
+
 void printAllGrades() {
 	if (phy2048.getGpa() > -1) {
 		phy2048.printAll();
@@ -264,10 +280,10 @@ void printAllGrades() {
 	}
 	if (cop3502.getGpa() > -1) {
 		cop3502.printAll();
-	}/*
+	}
 	if (cop3503.getGpa() > -1) {
 		cop3503.printAll();
-	}*/
+	}
 	if (chm2045.getGpa() > -1) {
 		chm2045.printAll();
 	}
@@ -349,7 +365,18 @@ void addCOP3502() {
 }
 
 void addCOP3503() {
+	cop3503 = *new COP3503();
+	cop3503.setCourseName("COP3503");
 
+	Course course;
+	course.setCourseName("COP3503");
+
+	int creditHours = getCreditHours();
+
+	cop3503.setCredits(creditHours);
+	course.setCredits(creditHours);
+
+	cm.addCourse(course);
 }
 
 void addCHM2045() {
@@ -524,8 +551,21 @@ void editCOP3502() {
 	course->setGpa(cop3502.getGpa());
 }
 
-void editCOP3503(Course* course) {
+void editCOP3503() {
+	//exams
+	for (int i = 0; i < 2; i++) {
+		cop3503.updateExams(i, getExamGrade(i + 1));
+	}
+	//programming assignments
+	for (int i = 0; i < 3; i++) {
+		cop3503.updateAssignments(i, getProgrammingAssignmentGrade(i + 1));
+	}
+	//term project
+	cop3503.updateGroupProject(getTermProject());
 
+	cop3503.calcGpa();
+	Course* course = cm.search(cop3503.getCourseName());
+	course->setGpa(cop3503.getGpa());
 }
 
 void editCHM2045() {
@@ -794,7 +834,7 @@ void editCourse() {
 		editCOP3502();
 	}
 	else if (course->getCourseName().compare("COP3503") == 0) {
-		editCOP3503(course);
+		editCOP3503();
 	}
 	else if (course->getCourseName().compare("CHM2045") == 0) {
 		editCHM2045();
