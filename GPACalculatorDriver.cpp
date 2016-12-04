@@ -12,6 +12,7 @@
 #include "MAC2311.h"
 #include "MAC2312.h"
 #include "MAC2313.h"
+#include "MAS3114.h"
 #include "CourseManager.h"
 #include "GPACalculatorDriver.h"
 
