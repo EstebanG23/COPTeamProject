@@ -1,5 +1,8 @@
 #pragma once
 #include "Course.h"
+#include <array>
+#include <iostream>
+using namespace std;
 #ifndef _MAC2312_H_
 #define _MAC2312_H_
 
@@ -12,8 +15,10 @@ private:
 	double participation; //4 points
 	double webAssign;//50 max out of 54.5 points, a double because no specific number of assignments is given in syllabus
 	double quizzes[8]; //best 6 of 8, 6 points each
+	array<double, 8> tempQuizzes;
 	double writtenHomework[3]; //3 collected, 5 points each
-
+	array<double, 3> tempWrittenHomework;
+	
 public:
 	MAC2312();
 	void calcGpa();
@@ -27,5 +32,6 @@ public:
 	double pointSummer(double[], int);
 	double examPointSummer(array<double, 20>);
 	double bestOfQuizzes(double[]);
+	void printAll();
 };
 #endif

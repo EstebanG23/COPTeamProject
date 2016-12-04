@@ -9,9 +9,11 @@ MAC2312::MAC2312() {
 	for (int i = 0; i < 20; i++) {
 		if (i < 8) {
 			quizzes[i] = -1;
+			tempQuizzes[i] = -1;
 		}
 		if (i < 3) {
 			writtenHomework[i] = -1;
+			tempWrittenHomework[i] = -1;
 		}
 		exams[i] = -1;
 	}
@@ -25,9 +27,11 @@ void MAC2312::updateWebAssign(double newScore) {
 }
 void MAC2312::updateQuiz(int quizNumber, double newScore) {
 	quizzes[quizNumber] = newScore;
+	tempQuizzes[quizNumber] = newScore;
 }
 void MAC2312::updateWrittenHomework(int homeworkNumber, double newScore) {
 	writtenHomework[homeworkNumber] = newScore;
+	tempWrittenHomework[homeworkNumber] = newScore;
 }
 void MAC2312::updateParticipation(double newScore) {
 	participation = newScore;
@@ -50,9 +54,9 @@ double MAC2312::pointSummer(double grades[], int arraySize) {
 	return total;
 }
 //this is exactly like point summer except that it takes in an array<T,V> type
-double MAC2312::examPointSummer(array<double,20> examGrades) {
+double MAC2312::examPointSummer(array<double, 20> examGrades) {
 	double total = 0;
-	for (int i = 0; i < examGrades.size(); i++) {
+	for (size_t i = 0; i < examGrades.size(); i++) {
 		//this check makes it so only grades that have been entered are added to the total
 		if (examGrades[i] != -1) {
 			total += examGrades[i];
@@ -203,4 +207,54 @@ void MAC2312::calcGpa() {
 	else {
 		gpa = -1;
 	}
+}
+void MAC2312::printAll()
+{
+	cout << "Written Homework: " << endl;
+	for (size_t i = 0; i < tempWrittenHomework.size(); i++) {
+		
+		if (tempWrittenHomework[i] >= 0)
+		{
+			cout << i + 1 << ". " << tempWrittenHomework[i] << endl;
+		}
+		
+	}
+	cout << endl;
+
+
+	cout << "Participation Points: " << participation << endl;
+	cout << endl;
+
+	cout << "Hittpoints: " << hittPoints << endl;
+	cout << endl;
+
+	cout << "WebAssign: " << webAssign << endl;
+	cout << endl;
+
+
+	cout << "Quizzes: " << endl;
+	for (size_t i = 0; i < tempQuizzes.size(); i++) {
+		if (tempQuizzes[i] >= 0)
+		{
+			cout << i + 1 << ". " << tempQuizzes[i] << endl;
+		}
+
+	}
+	
+	cout << endl;
+
+	cout << "Exams: " << endl;
+
+
+	for (size_t i = 0; i < exams.size(); i++) {
+		if (exams[i] >= 0)
+		{
+			cout << i + 1 << ". " << exams[i] << endl;
+		}
+		
+	}
+	cout << endl;
+	cout << "Finals: " << finals << endl;
+	cout << endl;
+
 }
