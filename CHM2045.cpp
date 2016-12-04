@@ -17,6 +17,8 @@ using namespace std;
 Chm2045::Chm2045() {
 	for (int i = 0; i<20; i++) {
 		exams[i] = -1;
+	}
+	for (int i = 0; i<10; i++) {
 		homework[i] = -1;
 	}
 }
@@ -34,7 +36,7 @@ void Chm2045::calcGpa() {
 			avgexams += exams[i];
 		}
 	}
-	for (int i = 0; i<20; i++) {
+	for (int i = 0; i<10; i++) {
 		if (homework[i] != -1) {
 			numhw++;
 			avghw += homework[i];
@@ -44,8 +46,10 @@ void Chm2045::calcGpa() {
 	avgexams = avgexams / numexams;
 	avghw = avghw / numhw;
 
+
 	tempGPA = (avgexams*.6) + (avghw*.1) + (hittPoints*.05) + (finals*.25);
 
+	this->gpa = tempGPA;
 }
 
 void Chm2045::updateExam(int examNum, double score) {
@@ -66,9 +70,11 @@ void Chm2045::updateHittPoints(double score) {
 
 void Chm2045::printAll()
 {
-	cout << "Homework: " << endl;
+	cout << courseName << endl << "Homework: " << endl;
 	for (size_t i = 0; i < homework.size(); i++) {
-		cout << i + 1 << ". " << homework[i] << endl;
+		if (homework[i] >= 0) {
+			cout << i + 1 << ". " << homework[i] << endl;
+		}
 	}
 	cout << endl;
 	cout << "Hittpoints: " << hittPoints << endl;
@@ -76,7 +82,9 @@ void Chm2045::printAll()
 	cout << "Exams: " << endl;
 
 	for (size_t i = 0; i < exams.size(); i++) {
-		cout << i + 1 << ". " << exams[i] << endl;
+		if (exams[i] >= 0) {
+			cout << i + 1 << ". " << exams[i] << endl;
+		}
 	}
 	cout << endl;
 	cout << "Finals: " << finals << endl;

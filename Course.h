@@ -14,7 +14,7 @@ using namespace std;
 class Course {
 public:
 
-	Course() : courseName(), credits(), gpa(), exams(), finals() {};
+	Course() : courseName(), credits(-1), gpa(-1), exams(), finals() {};
 
 	string getCourseName();
 

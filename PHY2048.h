@@ -4,7 +4,7 @@
 class Phy2048 : public Course {
 private:
 	array<double, 10> quizzes;
-	array<double, 20> homework;
+	array<double, 13> homework;
 	double hittPoints;
 
 public:

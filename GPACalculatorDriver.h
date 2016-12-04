@@ -172,6 +172,38 @@ double getLabGrade(int labNum) {
 	return labGrade;
 }
 
+void printAllGrades() {
+	if (phy2048.getGpa() > -1) {
+		phy2048.printAll();
+	}
+	if (phy2049.getGpa() > -1) {
+		phy2049.printAll();
+	}
+	if (cot3100.getGpa() > -1) {
+		cot3100.printAll();
+	}
+	if (cop3502.getGpa() > -1) {
+		cop3502.printAll();
+	}/*
+	if (cop3503.getGpa() > -1) {
+		cop3503.printAll();
+	}*/
+	if (chm2045.getGpa() > -1) {
+		chm2045.printAll();
+	}
+	/*if (mac2311.getGpa() > -1) {
+		mac2311.printAll();
+	}
+	if (mac2312.getGpa() > -1) {
+		mac2312.printAll();
+	}
+	if (mac2313.getGpa() > -1) {
+		mac2313.printAll();
+	}
+	if (mas3114.getGpa() > -1) {
+		mas3114.printAll();
+	}*/
+}
 
 #pragma region addCourses
 
@@ -221,7 +253,7 @@ void addCOT3100() {
 
 void addCOP3502() {
 	cop3502 = *new COP3502();
-	cot3100.setCourseName("COP3502");
+	cop3502.setCourseName("COP3502");
 
 	Course course;
 	course.setCourseName("COP3502");
@@ -239,10 +271,10 @@ void addCOP3503() {
 }
 
 void addCHM2045() {
-	chm2045.setCourseName("Chm2045");
+	chm2045.setCourseName("CHM2045");
 
 	Course course;
-	course.setCourseName("Chm2045");
+	course.setCourseName("CHM2045");
 
 	int creditHours = getCreditHours();
 	chm2045.setCredits(creditHours);
@@ -343,6 +375,7 @@ void editCOT3100() {
 void editCOP3502() {
 	//finals
 	cop3502.updateFinal(getFinalGrade());
+
 	//exams
 	for (int i = 0; i < 2; i++) {
 		cop3502.updateExam(i, getExamGrade(i + 1));
@@ -359,6 +392,10 @@ void editCOP3502() {
 	for (int i = 0; i < 10; i++) {
 		cop3502.updateLab(i, getLabGrade(i + 1));
 	}
+
+	cop3502.calcGpa();
+	Course* course = cm.search(cop3502.getCourseName());
+	course->setGpa(cop3502.getGpa());
 }
 
 void editCOP3503(Course* course) {
@@ -378,6 +415,12 @@ void editCHM2045() {
 	}
 	//hitt
 	chm2045.updateHittPoints(getHittGrade());
+
+
+
+	chm2045.calcGpa();
+	Course* course = cm.search(chm2045.getCourseName());
+	course->setGpa(chm2045.getGpa());
 }
 
 void editMAC2311(Course* course) {
@@ -437,8 +480,8 @@ void printCourses() {
 		cout << "There are no courses entered" << endl;
 	}
 	else {
-		//cm.printAll()
-		cout << "Printing all course grade values" << endl;
+		printAllGrades();
+		cm.printAll();
 	}
 	cout << endl;
 }

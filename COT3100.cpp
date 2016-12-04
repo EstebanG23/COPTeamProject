@@ -83,9 +83,11 @@ void Cot3100::updateFinal(double score) {
 }
 void Cot3100::printAll()
 {
-	cout << "Exams: " << endl;
+	cout << courseName << endl << "Exams: " << endl;
 	for (size_t i = 0; i < exams.size(); i++) {
-		cout << i + 1 << ". " << exams[i] << endl;
+		if (exams[i] >= 0) {
+			cout << i + 1 << ". " << exams[i] << endl;
+		}
 	}
 	cout << endl;
 	cout << "Finals: " << finals << endl;

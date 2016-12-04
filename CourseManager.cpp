@@ -49,6 +49,8 @@ bool CourseManager::deleteCourse(string courseName) {
 
 //prints summary
 void CourseManager::printCourses() {
+
+	cout << "Your overal GPA: " << calcOverallGPA() << endl;
 	cout << "Your courses:" << endl;
 	list<Course>::iterator itr;
 	int count = 1;
@@ -75,11 +77,17 @@ double CourseManager::getGpa() {
 	return overallGPA;
 }
 
-void CourseManager::setGpa(double Gpa, int credits) { //Have to add in credits
-	double earnedGpa = (Gpa*credits);
-	overallCreditHours += credits;
-	totalGradePoints += earnedGpa;
-	overallGPA = (totalGradePoints / overallCreditHours);
+double CourseManager::calcOverallGPA() {
+	list<Course>::iterator itr;
+	for (itr = courses->begin(); itr != courses->end(); itr++) {
+		Course course = *itr;
+		if (course.getGpa() >= 0) {
+			overallCreditHours += course.getCredits();
+			totalGradePoints += course.getCredits() * course.getGpa();
+		}
+	}
+	overallGPA = totalGradePoints / overallCreditHours;
+	return overallGPA;
 }
 
 Course* CourseManager::search(string courseName) {

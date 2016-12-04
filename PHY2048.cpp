@@ -12,7 +12,7 @@
 #include "PHY2048.h"
 
 Phy2048::Phy2048() {
-	for (int i = 0; i<12; i++) {
+	for (int i = 0; i<20; i++) {
 		exams[i] = -1;
 	}
 
@@ -122,9 +122,11 @@ void Phy2048::updateHittPoints(double score) {
 }
 
 void Phy2048::printAll() {
-	cout << "Homework: " << endl;
+	cout << courseName << endl << "Homework: " << endl;
 	for (size_t i = 0; i < homework.size(); i++) {
-		cout << i + 1 << ". " << homework[i] << endl;
+		if (homework[i] >= 0) {
+			cout << i + 1 << ". " << homework[i] << endl;
+		}
 	}
 	cout << endl;
 	cout << "Hittpoints: " << hittPoints << endl;
@@ -132,13 +134,17 @@ void Phy2048::printAll() {
 
 	cout << "Exams: " << endl;
 	for (size_t i = 0; i < exams.size(); i++) {
-		cout << i + 1 << ". " << exams[i] << endl;
+		if (exams[i] >= 0) {
+			cout << i + 1 << ". " << exams[i] << endl;
+		}
 	}
 	cout << endl;
 
 	cout << "Quizzes: " << endl;
 	for (size_t i = 0; i < quizzes.size(); i++) {
-		cout << i + 1 << ". " << quizzes[i] << endl;
+		if (quizzes[i] >= 0) {
+			cout << i + 1 << ". " << quizzes[i] << endl;
+		}
 	}
 	cout << endl;
 	cout << "Finals: " << finals << endl;

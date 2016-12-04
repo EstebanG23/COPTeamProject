@@ -2,9 +2,9 @@
 
 class COP3502 : public Course {
 private:
-	array<double, 20> homework;
-	array<double, 20> progAssignments;
-	array<double, 20> labs;
+	array<double, 10> homework;
+	array<double, 3> progAssignments;
+	array<double, 10> labs;
 
 
 public:

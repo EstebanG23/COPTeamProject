@@ -2,7 +2,7 @@
 
 class Chm2045 : public Course {
 private:
-	array<double, 20> homework;
+	array<double, 10> homework;
 	double hittPoints;
 
 public:

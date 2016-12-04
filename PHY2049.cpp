@@ -123,7 +123,7 @@ void Phy2049::updateHittPoints(double score) {
 }
 
 void Phy2049::printAll() {
-	cout << "Homework: " << endl;
+	cout << courseName << endl << "Homework: " << endl;
 	for (size_t i = 0; i < homework.size(); i++) {
 		cout << i + 1 << ". " << homework[i] << endl;
 	}
@@ -133,13 +133,17 @@ void Phy2049::printAll() {
 
 	cout << "Exams: " << endl;
 	for (size_t i = 0; i < exams.size(); i++) {
-		cout << i + 1 << ". " << exams[i] << endl;
+		if (exams[i] >= 0) {
+			cout << i + 1 << ". " << exams[i] << endl;
+		}
 	}
 	cout << endl;
 
 	cout << "Quizzes: " << endl;
 	for (size_t i = 0; i < quizzes.size(); i++) {
-		cout << i + 1 << ". " << quizzes[i] << endl;
+		if (quizzes[i] >= 0) {
+			cout << i + 1 << ". " << quizzes[i] << endl;
+		}
 	}
 	cout << endl;
 	cout << "Finals: " << finals << endl;

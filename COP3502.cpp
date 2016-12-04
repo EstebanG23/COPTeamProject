@@ -19,8 +19,12 @@ using namespace std;
 COP3502::COP3502() {
 	for (int i = 0; i<20; i++) {
 		exams[i] = -1;
+	}
+	for (int i = 0; i<10; i++) {
 		labs[i] = -1;
 		homework[i] = -1;
+	}
+	for (int i = 0; i<3; i++) {
 		progAssignments[i] = -1;
 	}
 }
@@ -40,19 +44,19 @@ void COP3502::calcGpa() {
 	int numexams = 0;
 	double avgexams = 0;
 
-	for (int i = 0; i<20; i++) {
+	for (int i = 0; i<10; i++) {
 		if (homework[i] != -1) {
 			numHW++;
 			avgHW += homework[i];
 		}
 	}
-	for (int i = 0; i<20; i++) {
+	for (int i = 0; i < 3; i++) {
 		if (progAssignments[i] != -1) {
 			numProg++;
 			avgProg += progAssignments[i];
 		}
 	}
-	for (int i = 0; i<20; i++) {
+	for (int i = 0; i<10; i++) {
 		if (labs[i] != -1) {
 			numLabs++;
 			avgLabs += labs[i];
@@ -106,24 +110,32 @@ void COP3502::updateProgAssignments(int progNum, double score) {
 }
 void COP3502::printAll()
 {
-	cout << "Homework: " << endl;
+	cout << courseName << endl << "Homework: " << endl;
 	for (size_t i = 0; i < homework.size(); i++) {
-		cout << i + 1 << ". " << homework[i] << endl;
+		if (homework[i] >= 0) {
+			cout << i + 1 << ". " << homework[i] << endl;
+		}
 	}
 	cout << endl;
 	cout << "Programming Assignments: " << endl;
 	for (size_t i = 0; i < progAssignments.size(); i++) {
-		cout << i + 1 << ". " << progAssignments[i] << endl;
+		if (progAssignments[i] >= 0) {
+			cout << i + 1 << ". " << progAssignments[i] << endl;
+		}
 	}
 	cout << endl;
 	cout << "Labs: " << endl;
 	for (size_t i = 0; i < labs.size(); i++) {
-		cout << i + 1 << ". " << labs[i] << endl;
+		if (labs[i] >= 0) {
+			cout << i + 1 << ". " << labs[i] << endl;
+		}
 	}
 	cout << endl;
 	cout << "Exams: " << endl;
 	for (size_t i = 0; i < exams.size(); i++) {
-		cout << i + 1 << ". " << exams[i] << endl;
+		if (exams[i] >= 0) {
+			cout << i + 1 << ". " << exams[i] << endl;
+		}
 	}
 	cout << endl;
 	cout << "Finals: " << finals << endl;

@@ -14,6 +14,8 @@ public:
 	double overallGPA;
 	int overallCreditHours;
 
+	CourseManager() : totalGradePoints(0), overallGPA(0), overallCreditHours(0) {}
+
 	void addCourse(Course course);
 
 	bool deleteCourse(string courseName);
@@ -24,7 +26,7 @@ public:
 
 	double getGpa();
 
-	void setGpa(double gpa, int creditHours);
+	double calcOverallGPA();
 
 	Course* search(string courseName);
 
