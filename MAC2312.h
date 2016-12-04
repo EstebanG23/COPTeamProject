@@ -1,4 +1,4 @@
-#include "Course.cpp"
+#include "Course.h"
 #ifndef _MAC2312_H_
 #define _MAC2312_H_
 
