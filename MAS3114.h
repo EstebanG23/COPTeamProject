@@ -5,7 +5,7 @@
 using namespace std;
 
 //this bit says that this particular class is a child of Course
-class MAS3114 : public Course { 
+class MAS3114 : public Course {
 private:
 	//there are 4 exams, 240 points total
 	//No separate final exam
@@ -24,7 +24,8 @@ public:
 	void updateParticipation(double);
 	void updateQuiz(double);
 	void updateExams(int, double);
-	double pointSummer(double[], int );
+	double pointSummer(double[], int);
 	double examPointSummer(array<double, 20>);
+	void printAll();
 
 };

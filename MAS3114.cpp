@@ -149,3 +149,50 @@ void MAS3114::calcGpa() {
 		gpa = -1;
 	}
 }
+void MAS3114::printAll()
+{
+
+	cout << "MAS311" << endl;
+
+	cout << "Homework: " << endl;
+	for (size_t i = 0; i < tempHomework.size(); i++) {
+
+		if (tempHomework[i] >= 0)
+		{
+			cout << i + 1 << ". " << tempHomework[i] << endl;
+		}
+
+	}
+
+	cout << endl;
+	cout << "Participation Points: " << participation << endl;
+	cout << endl;
+
+	cout << endl;
+	cout << "Quiz: " << quiz << endl;
+	cout << endl;
+
+
+	cout << "Projects: " << endl;
+	for (size_t i = 0; i < tempProjects.size(); i++) {
+		if (tempProjects[i] >= 0)
+		{
+			cout << i + 1 << ". " << tempProjects[i] << endl;
+		}
+
+	}
+
+	cout << endl;
+	cout << "Exams: " << endl;
+
+	for (size_t i = 0; i < exams.size(); i++) {
+		if (exams[i] >= 0)
+		{
+			cout << i + 1 << ". " << exams[i] << endl;
+		}
+
+	}
+	cout << endl;
+	
+
+}
