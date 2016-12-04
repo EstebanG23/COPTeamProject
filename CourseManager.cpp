@@ -120,18 +120,18 @@ Course* CourseManager::search(string courseName) {
 	}
 }
 
-Course CourseManager::findAt(int position) {
+Course* CourseManager::findAt(int position) {
 	int count = 0;
 
 	list<Course>::iterator itr;
 	for (itr = courses->begin(); itr != courses->end(); itr++) {
 		if (count++ == position) {
-			return *itr;
+			return &*itr;
 		}
 	}
 
-	Course retCourse;
-	retCourse.setCourseName("");
+	Course* retCourse = new Course();
+	retCourse->setCourseName("");
 	return retCourse;
 }
 
