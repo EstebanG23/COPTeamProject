@@ -273,11 +273,11 @@ void MAC2311::calcGpa() {
 }
 void MAC2311::printAll()
 {
-	cout << endl;
+	cout << courseName << endl;
 	cout << "Hittpoints: " << hittPoints << endl;
 	cout << endl;
 
-	cout << courseName << endl << "WebAssign: " << endl;
+	cout << "WebAssign: " << endl;
 	for (size_t i = 0; i < webAssignPrint.size(); i++) {
 		if (webAssignPrint[i] >= 0) {
 			cout << i + 1 << ". " << webAssignPrint[i] << endl;

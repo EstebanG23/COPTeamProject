@@ -210,14 +210,15 @@ void MAC2312::calcGpa() {
 }
 void MAC2312::printAll()
 {
+	cout << courseName << endl;
 	cout << "Written Homework: " << endl;
 	for (size_t i = 0; i < tempWrittenHomework.size(); i++) {
-		
+
 		if (tempWrittenHomework[i] >= 0)
 		{
 			cout << i + 1 << ". " << tempWrittenHomework[i] << endl;
 		}
-		
+
 	}
 	cout << endl;
 
@@ -240,7 +241,7 @@ void MAC2312::printAll()
 		}
 
 	}
-	
+
 	cout << endl;
 
 	cout << "Exams: " << endl;
@@ -251,7 +252,7 @@ void MAC2312::printAll()
 		{
 			cout << i + 1 << ". " << exams[i] << endl;
 		}
-		
+
 	}
 	cout << endl;
 	cout << "Finals: " << finals << endl;

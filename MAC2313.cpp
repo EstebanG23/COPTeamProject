@@ -139,6 +139,7 @@ void MAC2313::calcGpa() {
 }
 void MAC2313::printAll()
 {
+	cout << courseName << endl;
 	cout << "Participation Points: " << participation << endl;
 	cout << endl;
 
