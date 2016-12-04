@@ -1,7 +1,8 @@
+
 #include "MAC2312.h"
 
-//constructor initializes everything to -1
-MAC2312::MAC2312() {
+	//constructor initializes everything to -1
+	MAC2312::MAC2312() {
 	hittPoints = -1;
 	participation = -1;
 	webAssign = -1;
@@ -116,7 +117,7 @@ void MAC2312::calcGpa() {
 	}
 	//now figure out how many quiz grades have been entered
 	int quizCount = 0;
-	for (int i = 0; i < 10; i++) {
+	for (int i = 0; i < 8; i++) {
 		if (quizzes[i] != -1) {
 			quizCount++;
 		}
@@ -125,11 +126,11 @@ void MAC2312::calcGpa() {
 	//because there were a few different cases
 	if (quizCount > 6) {
 		pointDivision += 36;
-		totalPoints += (bestOfQuizzes(quizzes) * 0.36);
+		totalPoints += (bestOfQuizzes(quizzes) / 6 * 0.36);
 	}
 	else if (quizCount > 0 && quizCount < 6) {
 		pointDivision += (6 * quizCount);
-		totalPoints += (pointSummer(quizzes, 8) * 0.36);
+		totalPoints += (pointSummer(quizzes, 8) / quizCount * 0.36);
 	}
 	//count entered written homework grades
 	int writtenHomeworkCount = 0;
