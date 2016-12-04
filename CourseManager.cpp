@@ -10,7 +10,7 @@ using namespace std;
 string currentCourse;
 
 void toLower(string& str) {
-	for (int i = 0; i < str.size(); i++) {
+	for (int i = 0, length = str.size(); i < length; i++) {
 		if (str[i] > 64 && str[i] < 90) {
 			str[i] = tolower(str[i]);
 		}
@@ -27,7 +27,8 @@ bool areEqualCourses(Course item) {
 }
 
 void CourseManager::addCourse(Course course) {
-	if (search(course.getCourseName()).getCourseName().compare("") == 0) {
+	Course *retCourse = search(course.getCourseName());
+	if (retCourse->getCourseName().compare("") == 0) {
 		courses->push_back(course);
 	}
 	else {
@@ -40,34 +41,68 @@ void CourseManager::deleteCourse(string courseName) {
 	courses->remove_if(areEqualCourses);
 }
 
+//prints summary
 void CourseManager::printCourses() {
+	int gpa = calcOverallGPA();
+	if (gpa < 0) {
+		cout << "Your overall GPA: N/A" << endl;
+	}
+	else {
+		cout << "Your overall GPA: " << calcOverallGPA() << endl;
+	}
 	cout << "Your courses:" << endl;
 	list<Course>::iterator itr;
 	int count = 1;
 	for (itr = courses->begin(); itr != courses->end(); itr++) {
+		cout << count++ << ". ";
 		Course printCourse = *itr;
-		cout << count++ << ". " << printCourse.getCourseName().c_str() << endl;
+		printCourse.printCourse();
 	}
-	cout << endl;
+}
+
+//prints individual grades
+void CourseManager::printAll() {
+	cout << "Your courses:" << endl;
+	list<Course>::iterator itr;
+	int count = 1;
+	for (itr = courses->begin(); itr != courses->end(); itr++) {
+		cout << count++ << ". ";
+		Course printCourse = *itr;
+		printCourse.printAll();
+	}
 }
 
 double CourseManager::getGpa() {
 	return overallGPA;
 }
 
-void CourseManager::setGpa(double Gpa, int credits) { //Have to add in credits
-	double earnedGpa = (Gpa*credits);
-	overallCreditHours += credits;
-	totalGradePoints += earnedGpa;
-	overallGPA = (totalGradePoints / overallCreditHours);
+double CourseManager::calcOverallGPA() {
+	overallCreditHours = 0;
+	overallGPA = 0;
+	totalGradePoints = 0;
+	list<Course>::iterator itr;
+	for (itr = courses->begin(); itr != courses->end(); itr++) {
+		Course course = *itr;
+		if (course.getGpa() >= 0) {
+			overallCreditHours += course.getCredits();
+			totalGradePoints += course.getCredits() * course.getGpa();
+		}
+	}
+	if (overallCreditHours == 0) {
+		overallGPA = -1;
+	}
+	else {
+		overallGPA = totalGradePoints / overallCreditHours;
+	}
+	return overallGPA;
 }
 
-Course CourseManager::search(string courseName) {
+Course* CourseManager::search(string courseName) {
 	currentCourse = courseName;
 	if (courses->empty())
 	{
-		Course retCourse = *new Course();
-		retCourse.setCourseName("");
+		Course* retCourse = new Course();
+		retCourse->setCourseName("");
 
 		return retCourse;
 	}
@@ -75,27 +110,31 @@ Course CourseManager::search(string courseName) {
 	auto findIter = find_if(courses->begin(), courses->end(), areEqualCourses);
 
 	if (findIter == courses->end()) {
-		Course retCourse = *new Course();
-		retCourse.setCourseName("");
+		Course* retCourse = new Course();
+		retCourse->setCourseName("");
 
 		return retCourse;
 	}
 	else {
-		return *findIter;
+		return &*findIter;
 	}
 }
 
-Course CourseManager::findAt(int position) {
+Course* CourseManager::findAt(int position) {
 	int count = 0;
 
 	list<Course>::iterator itr;
 	for (itr = courses->begin(); itr != courses->end(); itr++) {
 		if (count++ == position) {
-			return *itr;
+			return &*itr;
 		}
 	}
 
-	Course retCourse;
-	retCourse.setCourseName("");
+	Course* retCourse = new Course();
+	retCourse->setCourseName("");
 	return retCourse;
+}
+
+bool CourseManager::empty() {
+	return courses->empty();
 }
