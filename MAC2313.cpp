@@ -137,3 +137,44 @@ void MAC2313::calcGpa() {
 		gpa = -1;
 	}
 }
+void MAC2313::printAll()
+{
+	cout << "Participation Points: " << participation << endl;
+	cout << endl;
+
+	cout << "WebAssign: " << endl;
+	for (size_t i = 0; i < tempWebAssign.size(); i++) {
+		if (tempWebAssign[i] >= 0)
+		{
+			cout << i + 1 << ". " << tempWebAssign[i] << endl;
+		}
+
+	}
+	cout << endl;
+
+	cout << "Quizzes: " << endl;
+	for (size_t i = 0; i < tempQuizzes.size(); i++) {
+		if (tempQuizzes[i] >= 0)
+		{
+			cout << i + 1 << ". " << tempQuizzes[i] << endl;
+		}
+
+	}
+
+	cout << endl;
+	cout << "Exams: " << endl;
+
+	for (size_t i = 0; i < exams.size(); i++) {
+		if (exams[i] >= 0)
+		{
+			cout << i + 1 << ". " << exams[i] << endl;
+		}
+
+	}
+
+	cout << endl;
+	cout << "Finals: " << finals << endl;
+	cout << endl;
+
+}
+

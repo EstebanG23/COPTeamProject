@@ -5,7 +5,7 @@
 using namespace std;
 
 //this bit says that this particular class is a child of Course
-class MAC2313 : public Course { 
+class MAC2313 : public Course {
 private:
 	//NOTE: this class is entirely percentage based according to the syllabus
 	//This means grades need to be entered as percentage values
@@ -13,9 +13,9 @@ private:
 	//They would enter 95, 87, and 87 
 	//There are 3 exams and a final in this class
 	double participation;
-	double webAssign[27]; 
+	double webAssign[27];
 	array<double, 27> tempWebAssign;
-	double quizzes[13]; 
+	double quizzes[13];
 	array<double, 13> tempQuizzes;
 
 public:
@@ -28,4 +28,5 @@ public:
 	void updateFinal(double);
 	double pointSummer(double[], int);
 	double examPointSummer(array<double, 20>);
+	void printAll();
 };
