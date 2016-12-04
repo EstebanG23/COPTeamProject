@@ -32,5 +32,5 @@ public:
 	double bestOfQuizzes(double[]);
 	double bestOfWrittenHomework(double[]);
 	double webAssignCalculator(double[]);
-	void PrintAll();
+	void printAll();
 };

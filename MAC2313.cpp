@@ -87,7 +87,7 @@ void MAC2313::calcGpa() {
 	}
 	//count exams
 	int examCount = 0;
-	for (int i = 0; i < 27; i++) {
+	for (int i = 0; i < 20; i++) {
 		if (exams[i] != -1) {
 			examCount++;
 		}
@@ -177,4 +177,3 @@ void MAC2313::printAll()
 	cout << endl;
 
 }
-

@@ -43,7 +43,7 @@ void CourseManager::deleteCourse(string courseName) {
 
 //prints summary
 void CourseManager::printCourses() {
-	int gpa = calcOverallGPA();
+	double gpa = calcOverallGPA();
 	if (gpa < 0) {
 		cout << "Your overall GPA: N/A" << endl;
 	}

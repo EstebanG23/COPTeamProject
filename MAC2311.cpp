@@ -271,7 +271,7 @@ void MAC2311::calcGpa() {
 		setGpa(-1);
 	}
 }
-void MAC2311::PrintAll()
+void MAC2311::printAll()
 {
 	cout << endl;
 	cout << "Hittpoints: " << hittPoints << endl;

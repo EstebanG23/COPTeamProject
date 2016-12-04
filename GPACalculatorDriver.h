@@ -11,11 +11,14 @@ COP3502 cop3502;
 Chm2045 chm2045;
 MAC2311 mac2311;
 MAC2312 mac2312;
+MAC2313 mac2313;
 const string courseNames[] = { "PHY2048", "PHY2049", "COT3100", "COP3502", "COP3503", "CHM2045", "MAC2311", "MAC2312", "MAC2313", "MAS3114" };
 
 #pragma endregion
 
 #pragma region helper functions
+
+#pragma region input getters
 
 InputValidator getInputValidator() {
 	return iv;
@@ -204,6 +207,21 @@ double getWebAssignGrade() {
 	return waGrade;
 }
 
+double getParticipationGrade() {
+	//we introduce a bug if the grade is 0
+	cout << "Please enter the grade for your participation:" << endl;
+	double participationGrade = -1;
+
+	while (participationGrade < 0) {
+		participationGrade = iv.getDouble();
+		if (participationGrade < 0) {
+			cout << "Grade must be 0 or greater" << endl;
+		}
+		cout << endl;
+	}
+	return participationGrade;
+}
+
 void printAllGrades() {
 	if (phy2048.getGpa() > -1) {
 		phy2048.printAll();
@@ -223,7 +241,7 @@ void printAllGrades() {
 	if (chm2045.getGpa() > -1) {
 		chm2045.printAll();
 	}
-	/*if (mac2311.getGpa() > -1) {
+	if (mac2311.getGpa() > -1) {
 		mac2311.printAll();
 	}
 	if (mac2312.getGpa() > -1) {
@@ -232,10 +250,12 @@ void printAllGrades() {
 	if (mac2313.getGpa() > -1) {
 		mac2313.printAll();
 	}
-	if (mas3114.getGpa() > -1) {
+	/*if (mas3114.getGpa() > -1) {
 		mas3114.printAll();
 	}*/
 }
+
+#pragma endregion
 
 #pragma region addCourses
 
@@ -346,7 +366,18 @@ void addMAC2312() {
 }
 
 void addMAC2313() {
+	mac2313 = *new MAC2313();
+	mac2313.setCourseName("MAC2313");
 
+	Course course;
+	course.setCourseName("MAC2313");
+
+	int creditHours = getCreditHours();
+
+	mac2313.setCredits(creditHours);
+	course.setCredits(creditHours);
+
+	cm.addCourse(course);
 }
 
 void addMAS3114() {
@@ -521,14 +552,35 @@ void editMAC2312() {
 	mac2312.updateHittPoints(getHittGrade());
 	//webassign
 	mac2312.updateWebAssign(getWebAssignGrade());
+	//participation
+	mac2312.updateParticipation(getParticipationGrade());
 
 	mac2312.calcGpa();
 	Course* course = cm.search(mac2312.getCourseName());
 	course->setGpa(mac2312.getGpa());
 }
 
-void editMAC2313(Course* course) {
+void editMAC2313() {
+	//finals
+	mac2313.updateFinal(getFinalGrade());
+	//exams
+	for (int i = 0; i < 3; i++) {
+		mac2313.updateExam(i, getExamGrade(i + 1));
+	}
+	//quizzes
+	for (int i = 0; i < 13; i++) {
+		mac2313.updateQuiz(i, getQuizGrade(i + 1));
+	}
+	//web assign
+	for (int i = 0; i < 27; i++) {
+		mac2313.updateWebAssign(i, getWebAssignGrade(i + 1));
+	}
+	//participation
+	mac2313.updateParticipation(getParticipationGrade());
 
+	mac2313.calcGpa();
+	Course* course = cm.search(mac2313.getCourseName());
+	course->setGpa(mac2313.getGpa());
 }
 
 void editMAS3114(Course* course) {
@@ -694,7 +746,7 @@ void editCourse() {
 		editMAC2312();
 	}
 	else if (course->getCourseName().compare("MAC2313") == 0) {
-		editMAC2313(course);
+		editMAC2313();
 	}
 	else if (course->getCourseName().compare("MAS3114") == 0) {
 		editMAS3114(course);
