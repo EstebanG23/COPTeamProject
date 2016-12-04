@@ -3,7 +3,7 @@
 //  COPTeamProject
 //
 //  Created by Esteban Gonzalez on 11/12/16.
-//  Copyright © 2016 Esteban Gonzalez. All rights reserved.
+//  Copyright ï¿½ 2016 Esteban Gonzalez. All rights reserved.
 //
 
 #include <stdio.h>
@@ -49,7 +49,39 @@ void Chm2045::calcGpa() {
 
 	tempGPA = (avgexams*.6) + (avghw*.1) + (hittPoints*.05) + (finals*.25);
 
-	this->gpa = tempGPA;
+    if (tempGPA >= 90) {
+        gpa = 4.0;
+    }
+    else if (tempGPA >= 86 && tempGPA < 90) {
+        gpa = 3.67;
+    }
+    else if (tempGPA >= 83 && tempGPA < 86) {
+        gpa = 3.33;
+    }
+    else if (tempGPA >= 80 && tempGPA < 83) {
+        gpa = 3;
+    }
+    else if (tempGPA >= 76 && tempGPA < 80) {
+        gpa = 2.67;
+    }
+    else if (tempGPA >= 73 && tempGPA < 76) {
+        gpa = 2.33;
+    }
+    else if (tempGPA >= 70 && tempGPA < 73) {
+        gpa = 2;
+    }
+    else if (tempGPA >= 66 && tempGPA < 70) {
+        gpa = 1.33;
+    }
+    else if (tempGPA >= 63 && tempGPA < 66) {
+        gpa = 1;
+    }
+    else if (tempGPA >= 60 && tempGPA < 63) {
+        gpa = 0.67;
+    }
+    else {
+        gpa = 0;
+    }
 }
 
 void Chm2045::updateExam(int examNum, double score) {
