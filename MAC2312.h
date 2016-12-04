@@ -1,9 +1,10 @@
+#pragma once
 #include "Course.h"
 #ifndef _MAC2312_H_
 #define _MAC2312_H_
 
 //this bit says that this particular class is a child of Course
-class MAC2312 :  public Course {
+class MAC2312 : public Course {
 private:
 	//NOTE: 3 exams 60 points each, 80 point final
 	//course grade is out of 400 points
@@ -14,8 +15,8 @@ private:
 	double writtenHomework[3]; //3 collected, 5 points each
 
 public:
-	MAC2312::MAC2312();
-	void calcGPA();
+	MAC2312();
+	void calcGpa();
 	void updateHittPoints(double);
 	void updateWebAssign(double);
 	void updateQuiz(int, double);
@@ -24,6 +25,7 @@ public:
 	void updateExam(int, double);
 	void updateFinal(double);
 	double pointSummer(double[], int);
+	double examPointSummer(array<double, 20>);
 	double bestOfQuizzes(double[]);
 };
 #endif

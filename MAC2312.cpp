@@ -49,6 +49,17 @@ double MAC2312::pointSummer(double grades[], int arraySize) {
 	}
 	return total;
 }
+//this is exactly like point summer except that it takes in an array<T,V> type
+double MAC2312::examPointSummer(array<double,20> examGrades) {
+	double total = 0;
+	for (int i = 0; i < examGrades.size(); i++) {
+		//this check makes it so only grades that have been entered are added to the total
+		if (examGrades[i] != -1) {
+			total += examGrades[i];
+		}
+	}
+	return total;
+}
 //this method sorts through the quiz array and finds the index of the two lowest quiz grades
 //these two grades are dropped
 //and then the rest of the grades are summed and returned as a double
@@ -78,7 +89,7 @@ double MAC2312::bestOfQuizzes(double quizzes[]) {
 	return bestSum;
 }
 //This method condenses all the points and then sets the gpa value accordingly
-void MAC2312::calcGPA() {
+void MAC2312::calcGpa() {
 	double totalPoints = 0; //this tracks number of points earned
 	double pointDivision = 0; //this will track number of available points based on what has been graded
 	if (hittPoints != -1) {
@@ -136,7 +147,7 @@ void MAC2312::calcGPA() {
 	}
 	if (examCount > 0) {
 		pointDivision += (60 * examCount);
-		totalPoints += pointSummer(exams, 20);
+		totalPoints += examPointSummer(exams);
 	}
 	//final exam
 	if (finals != -1) {

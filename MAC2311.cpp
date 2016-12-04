@@ -37,7 +37,7 @@ void MAC2311::updateFinal(double newScore) {
 	finals = newScore;
 }
 //this method replaces the lowest exam grade with final exam grade if final is higher
-void MAC2311::examReplace(double examGrades[], double finals) {
+void MAC2311::examReplace(array<double, 20> examGrades, double finals) {
 	int lowestIndex = 0;
 	//this part finds the index of the lowest exam grade
 	for (int i = 1; i < 3; i++) {
@@ -59,6 +59,17 @@ double MAC2311::pointSummer(double grades[], int arraySize) {
 		//this check makes it so only grades that have been entered are added to the total
 		if (grades[i] != -1) {
 			total += grades[i];
+		}
+	}
+	return total;
+}
+//this is exactly like pointSummer except that it takes in an array<T, V> type
+double MAC2311::examPointSummer(array<double, 20> examGrades) {
+	double total = 0;
+	for (int i = 0; i < examGrades.size(); i++) {
+		//this check makes it so only grades that have been entered are added to the total
+		if (examGrades[i] != -1) {
+			total += examGrades[i];
 		}
 	}
 	return total;
@@ -132,12 +143,12 @@ double MAC2311::webAssignCalculator(double webAssign[]) {
 	return points;
 }
 //This method condenses all the points and then sets the gpa value accordingly
-void MAC2311::calcGPA() {
+void MAC2311::calcGpa() {
 	double totalPoints = 0; //this tracks number of points earned
 	double pointDivision = 0; //this will track number of available points based on what has been graded
-	//webAssign points max out at 50
-	//for webassign, take in each grade as percentage, then use average percentage to calculate total points out of 50
-	//the if statements determine how the various grades affect the total, depending on which ones have been graded
+							  //webAssign points max out at 50
+							  //for webassign, take in each grade as percentage, then use average percentage to calculate total points out of 50
+							  //the if statements determine how the various grades affect the total, depending on which ones have been graded
 	if (webAssignCalculator(webAssign) != -1) {
 		totalPoints += webAssignCalculator(webAssign);
 		pointDivision += 50;
@@ -159,7 +170,7 @@ void MAC2311::calcGPA() {
 		pointDivision += 48;
 		totalPoints += bestOfQuizzes(quizzes);
 	}
-	else if (quizCount > 0 && quizCount < 8){
+	else if (quizCount > 0 && quizCount < 8) {
 		pointDivision += (6 * quizCount);
 		totalPoints += pointSummer(quizzes, 10);
 	}
@@ -174,7 +185,7 @@ void MAC2311::calcGPA() {
 		pointDivision += 12;
 		totalPoints += bestOfWrittenHomework(writtenHomework);
 	}
-	else if (writtenHomeworkCount > 0 && writtenHomeworkCount < 5){
+	else if (writtenHomeworkCount > 0 && writtenHomeworkCount < 5) {
 		pointDivision += (3 * writtenHomeworkCount);
 		totalPoints += pointSummer(writtenHomework, 5);
 	}
@@ -191,7 +202,7 @@ void MAC2311::calcGPA() {
 	}
 	if (examCount > 0) {
 		pointDivision += (75 * examCount);
-		totalPoints += pointSummer(exams, 20);
+		totalPoints += examPointSummer(exams);
 	}
 	if (finals != -1) {
 		pointDivision += 75;
@@ -249,4 +260,3 @@ void MAC2311::calcGPA() {
 		setGpa(-1);
 	}
 }
-
