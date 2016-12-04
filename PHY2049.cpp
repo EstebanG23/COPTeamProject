@@ -53,12 +53,12 @@ void Phy2049::calcGpa() {
 		}
 	}
 	avgquiz = (avgquiz / numquiz)/.9;
-	if (avgquiz>1) {
-		avgquiz = 1;
+	if (avgquiz>100) {
+		avgquiz = 100;
 	}
 	avgHW = (avgHW / numHW)/.9;
-	if (avgHW>1) {
-		avgHW = 1;
+	if (avgHW>100) {
+		avgHW = 100;
 	}
 	avgexam = avgexam / numexam;
 
