@@ -93,20 +93,20 @@ void MAC2312::calcGpa() {
 	double totalPoints = 0; //this tracks number of points earned
 	double pointDivision = 0; //this will track number of available points based on what has been graded
 	if (hittPoints != -1) {
-		totalPoints += hittPoints;
+		totalPoints += (hittPoints * 0.35);
 		pointDivision += 35;
 	}
 	if (participation != -1) {
-		totalPoints += participation;
+		totalPoints += (participation * 0.04);
 		pointDivision += 4;
 	}
 	//webAssign points max out at 50
 	if (webAssign != -1) {
-		if (webAssign > 50) {
+		if ((webAssign * 0.5) > 50) {
 			totalPoints += 50;
 		}
 		else {
-			totalPoints += webAssign;
+			totalPoints += (webAssign * 0.5);
 		}
 		pointDivision += 50;
 	}
@@ -121,11 +121,11 @@ void MAC2312::calcGpa() {
 	//because there were a few different cases
 	if (quizCount > 6) {
 		pointDivision += 36;
-		totalPoints += bestOfQuizzes(quizzes);
+		totalPoints += (bestOfQuizzes(quizzes) * 0.36);
 	}
 	else if (quizCount > 0 && quizCount < 6) {
 		pointDivision += (6 * quizCount);
-		totalPoints += pointSummer(quizzes, 8);
+		totalPoints += (pointSummer(quizzes, 8) * 0.36);
 	}
 	//count entered written homework grades
 	int writtenHomeworkCount = 0;
@@ -136,7 +136,7 @@ void MAC2312::calcGpa() {
 	}
 	if (writtenHomeworkCount > 0) {
 		pointDivision += (5 * writtenHomeworkCount);
-		totalPoints += pointSummer(writtenHomework, 3);
+		totalPoints += (pointSummer(writtenHomework, 3) * 0.05);
 	}
 	//count entered exam grades
 	int examCount = 0;
@@ -147,12 +147,12 @@ void MAC2312::calcGpa() {
 	}
 	if (examCount > 0) {
 		pointDivision += (60 * examCount);
-		totalPoints += examPointSummer(exams);
+		totalPoints += (examPointSummer(exams) * 0.6);
 	}
 	//final exam
 	if (finals != -1) {
 		pointDivision += 80;
-		totalPoints += finals;
+		totalPoints += (finals * 0.8);
 	}
 	//makes sure no division by zer0 when finding percentage
 	double percentage;
