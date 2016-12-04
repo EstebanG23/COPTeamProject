@@ -5,7 +5,7 @@
 using namespace std;
 
 //this bit says that this particular class is a child of Course
-class COP3503 : public Course { 
+class COP3503 : public Course {
 private:
 	//This course is percentage based, so scores will need to be entered by percentage
 	//Example, if they get a 79% on the first exam, enter 79
@@ -23,4 +23,5 @@ public:
 	void COP3503::updateExams(int, double);
 	double COP3503::pointSummer(double[], int);
 	double COP3503::examPointSummer(array<double, 20>);
+	void COP3503::printAll();
 };
