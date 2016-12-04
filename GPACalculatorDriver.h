@@ -69,7 +69,7 @@ string getCourseName() {
 
 double getFinalGrade() {
 	//we introduce a bug if the grade is 0
-	cout << "Please enter the grade for the final:" << endl;
+	cout << "Please enter the percentage grade for your final exam:" << endl;
 	double finalGrade = -1;
 
 	while (finalGrade < 0) {
@@ -83,7 +83,7 @@ double getFinalGrade() {
 }
 
 double getExamGrade(int examNum) {
-	cout << "Please enter the grade for exam " << examNum << endl;
+	cout << "Please enter the percentage grade for your exam " << examNum << endl;
 	double examGrade = -1;
 
 	while (examGrade < 0) {
@@ -98,7 +98,7 @@ double getExamGrade(int examNum) {
 }
 
 double getQuizGrade(int quizNum) {
-	cout << "Please enter the grade for quiz " << quizNum << endl;
+	cout << "Please enter the percentage grade for your quiz " << quizNum << endl;
 	double quizGrade = -1;
 
 	while (quizGrade < 0) {
@@ -113,7 +113,7 @@ double getQuizGrade(int quizNum) {
 }
 
 double getHomeworkGrade(int homeworkNum) {
-	cout << "Please enter the grade for homework " << homeworkNum << endl;
+	cout << "Please enter the percentage grade for your homework " << homeworkNum << endl;
 	double homeworkGrade = -1;
 
 	while (homeworkGrade < 0) {
@@ -129,7 +129,7 @@ double getHomeworkGrade(int homeworkNum) {
 
 double getHittGrade() {
 	//we introduce a bug if the grade is 0
-	cout << "Please enter the grade for your hitt clicker points:" << endl;
+	cout << "Please enter the percentage grade for your hitt clicker points:" << endl;
 	double hittGrade = -1;
 
 	while (hittGrade < 0) {
@@ -144,7 +144,7 @@ double getHittGrade() {
 
 double getProgrammingAssignmentGrade(int paNum) {
 	//we introduce a bug if the grade is 0
-	cout << "Please enter the grade for programming assignment " << paNum << ":" << endl;
+	cout << "Please enter the percentage grade for your programming assignment " << paNum << ":" << endl;
 	double paGrade = -1;
 
 	while (paGrade < 0) {
@@ -159,7 +159,7 @@ double getProgrammingAssignmentGrade(int paNum) {
 
 double getLabGrade(int labNum) {
 	//we introduce a bug if the grade is 0
-	cout << "Please enter the grade for your lab number " << labNum << ":" << endl;
+	cout << "Please enter the percentage grade for your lab number " << labNum << ":" << endl;
 	double labGrade = -1;
 
 	while (labGrade < 0) {
