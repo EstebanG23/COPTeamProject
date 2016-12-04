@@ -1,12 +1,82 @@
-#include "stdafx.h"
 #include "COP3503.h"
 
+//constructor initializes everything to -1
+COP3503::COP3503() {
+	groupProject = -1;
+	for (int i = 0; i < 20; i++) {
+		if (i < 3) {
+			assignments[i] = -1;
+			tempAssignments[i] = -1;
+		}
+		exams[i] = -1;
+	}
+}
+//these methods take in a new grade value and change or set the existing value
+void COP3503::updateAssignments(int assignmentNumber, double newScore) {
+	assignments[assignmentNumber] = newScore;
+	tempAssignments[assignmentNumber] = newScore;
+}
+void COP3503::updateGroupProject(double newScore) {
+	groupProject = newScore;
+}
+void COP3503::updateExams(int examNumber, double newScore) {
+	exams[examNumber] = newScore;
+}
+//this is a generic thing that adds up the contents of an array and returns the value
+double COP3503::pointSummer(double grades[], int arraySize) {
+	double total = 0;
+	for (int i = 0; i < arraySize; i++) {
+		total += grades[i];
+	}
+	return total;
+}
+double COP3503::examPointSummer(array<double, 20> examGrades) {
+	double total = 0;
+	for (int i = 0; i < examGrades.size(); i++) {
+		//this check makes it so only grades that have been entered are added to the total
+		if (examGrades[i] != -1) {
+			total += examGrades[i];
+		}
+	}
+	return total;
+}
 //This method condenses all the points as percentages and then sets the gpa value accordingly
 void COP3503::calcGpa() {
 	double percentage = 0;
-	percentage += ((pointSummer(assignments) / 3) * 0.3);
-	percentage += ((pointSummer(exams) / 2) * 0.4);
-	percentage += (project * 0.3);
+	double divisor = 0;
+	//count assignment grades
+	int assignmentCount = 0;
+	for (int i = 0; i < 3; i++) {
+		if (assignments[i] != -1) {
+			assignmentCount++;
+		}
+	}
+	if (assignmentCount != -1) {
+		percentage += ((pointSummer(assignments, 3) / assignmentCount) * 0.3);
+		divisor += 30;
+	}
+	//count exam grades
+	int examCount = 0;
+	for (int i = 0; i < 2; i++) {
+		if (exams[i] != -1) {
+			examCount++;
+		}
+	}
+	if (examCount != -1) {
+		percentage += ((examPointSummer(exams) / examCount) * 0.4);
+		divisor += 40;
+	}
+	if (groupProject != -1) {
+		percentage += (groupProject * 0.3);
+		divisor += 30;
+	}
+	if (divisor != 0) {
+		percentage /= divisor;
+		percentage *= 100;
+	}
+	else {
+		percentage = -1;
+	}
 	//these ifs serve to set the gpa according to the total percentage value
 	if (percentage >= 93) {
 		gpa = 4.0;
@@ -41,27 +111,10 @@ void COP3503::calcGpa() {
 	else if (percentage >= 60 && percentage < 63) {
 		gpa = 0.67;
 	}
-	else {
+	else if (percentage >= 0 && percentage < 60) {
 		gpa = 0;
 	}
-}
-//these methods take in a new grade value and change or set the existing value
-//may need this-> pointer, not sure because I can't test the functionality
-//if it does, it would be redone like this: COP3503->groupProject = newScore;
-void COP3503::updateAssignments(int assignmentNumber, double newScore) {
-	assignments[assignmentNumber] = newScore;
-}
-void COP3503::updateGroupProject(double newScore) {
-	groupProject = newScore;
-}
-void COP3503::updateExams(int examNumber, double newScore) {
-	exams[examNumber] = newScore;
-}
-//this is a generic thing that adds up the contents of an array and returns the value
-double pointSummer(std::array grades) {
-	double total = 0;
-	for (int i = 0; i < grades.size(); i++) {
-		total += grades[i];
+	else {
+		gpa = -1;
 	}
-	return total;
 }
