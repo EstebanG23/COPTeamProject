@@ -1,65 +1,23 @@
-#include "stdafx.h"
 #include "MAC2311.h"
 
-//This method condenses all the points and then sets the gpa value accordingly
-void MAC2311::calcGPA() {
-	double totalPoints = 0;
-	//webAssign points max out at 50
-	if (pointSummer(webAssign) > 50) {
-		totalpoints += 50;
-	}
-	else {
-		totalPoints += pointSummer(webAssign);
-	}
-	totalPoints += hittPoints;
-	totalPoints += bestOfQuizzes(quizzes);
-	totalPoints += bestOfWrittenHomework(writtenHomework);
-	examReplace(exams, finalExam); 
-	//final variable can't just be named "final" like in UML diagram because it is a keyword
-	//here I assume it will be named finalExam
-	totalPoints += pointSummer(exams);
-	totalPoints += finalExam; //the above comment also applies here
-	//these ifs serve to set the gpa according to the total point value
-	if (totalPoints >= 405) {
-		gpa = 4;
-	}
-	else if (totalPoints >= 390 && totalPoints <= 404) {
-		gpa = 3.67;
-	}
-	else if (totalPoints >= 375 && totalPoints <= 389) {
-		gpa = 3.33;
-	}
-	else if (totalPoints >= 360 && totalPoints <= 374) {
-		gpa = 3;
-	}
-	else if (totalPoints >= 345 && totalPoints <= 359) {
-		gpa = 2.67;
-	}
-	else if (totalPoints >= 325 && totalPoints <= 344) {
-		gpa = 2.33;
-	}
-	else if (totalPoints >= 305 && totalPoints <= 324) {
-		gpa = 2;
-	}
-	else if (totalPoints >= 290 && totalPoints <= 304) {
-		gpa = 1.67;
-	}
-	else if (totalPoints >= 275 && totalPoints <= 289) {
-		gpa = 1.33;
-	}
-	else if (totalPoints >= 260 && totalPoints <= 274) {
-		gpa = 1;
-	}
-	else if (totalPoints >= 245 && totalPoints <= 259) {
-		gpa = 0.67;
-	}
-	else {
-		gpa = 0;
+//constructor initializes everything to -1
+MAC2311::MAC2311() {
+	hittPoints = -1;
+	finals = -1;
+	for (int i = 0; i < 20; i++) {
+		if (i < 13) {
+			webAssign[i] = -1;
+		}
+		if (i < 10) {
+			quizzes[i] = -1;
+		}
+		if (i < 5) {
+			writtenHomework[i] = -1;
+		}
+		exams[i] = -1;
 	}
 }
 //these methods take in a new grade value and change or set the existing value
-//may need this-> pointer, not sure because I can't test the functionality
-//if it does, it would be redone like this: MAC2311->finalExam = newScore;
 void MAC2311::updateHittPoints(double newScore) {
 	hittPoints = newScore;
 }
@@ -76,10 +34,10 @@ void MAC2311::updateExam(int examNumber, double newScore) {
 	exams[examNumber] = newScore;
 }
 void MAC2311::updateFinal(double newScore) {
-	finalExam = newScore;
+	finals = newScore;
 }
 //this method replaces the lowest exam grade with final exam grade if final is higher
-void examReplace(std::array examGrades, double finalExam) {
+void MAC2311::examReplace(double examGrades[], double finals) {
 	int lowestIndex = 0;
 	//this part finds the index of the lowest exam grade
 	for (int i = 1; i < 3; i++) {
@@ -89,38 +47,53 @@ void examReplace(std::array examGrades, double finalExam) {
 	}
 	//this part compares final exam grade to the lowest exam grade
 	//if final is higher it replaces the lowest exam grade
-	if (finalExam > examGrade[lowestIndex]) {
-		examGrade[lowestIndex] = finalExam;
+	if (finals > examGrades[lowestIndex]) {
+		examGrades[lowestIndex] = finals;
 	}
 }
 //this is a generic thing that adds up the contents of an array and returns the value
 //it is used in pretty much every course gpa calculation
-double pointSummer(std::array grades) {
+double MAC2311::pointSummer(double grades[], int arraySize) {
 	double total = 0;
-	for (int i = 0; i < grades.size(); i++) {
-		total += grades[i];
+	for (int i = 0; i < arraySize; i++) {
+		//this check makes it so only grades that have been entered are added to the total
+		if (grades[i] != -1) {
+			total += grades[i];
+		}
 	}
 	return total;
 }
 //this method sorts through the quiz array and finds the index of the two lowest quiz grades
 //these two grades are dropped
 //and then the rest of the grades are summed and returned as a double
-double bestOfQuizzes(std::array quizzes) {
+double MAC2311::bestOfQuizzes(double quizzes[]) {
 	double bestSum = 0;
 	int lowestIndex = 0;
-	int nextLowest = 0;
+	//finding lowest index
 	for (int i = 1; i < 10; i++) {
 		if (quizzes[i] < quizzes[lowestIndex]) {
-			nextLowest = lowestIndex;
 			lowestIndex = i;
 		}
 	}
-	bestSum = pointSummer(quizzes) - quizzes[lowestIndex] - quizzes[nextLowest];
+	int nextLowest;
+	if (lowestIndex == 0) {
+		nextLowest = 1;
+	}
+	else {
+		nextLowest = 0;
+	}
+	//finds 2nd lowest by redoing the check and ignoring the lowest one
+	for (int i = 1; i < 10; i++) {
+		if (quizzes[i] < quizzes[nextLowest] && i != lowestIndex) {
+			nextLowest = i;
+		}
+	}
+	bestSum = pointSummer(quizzes, 10) - quizzes[lowestIndex] - quizzes[nextLowest];
 	return bestSum;
 }
 //this method acts the same way as the one above, but it only finds the lowest homework grade
 //and drops it before returning the sum of the rest of them
-double bestOfWrittenHomework(std::array writtenHomework) {
+double MAC2311::bestOfWrittenHomework(double writtenHomework[]) {
 	double bestSum = 0;
 	int lowestIndex = 0;
 	for (int i = 1; i < 5; i++) {
@@ -128,5 +101,152 @@ double bestOfWrittenHomework(std::array writtenHomework) {
 			lowestIndex = i;
 		}
 	}
-	bestSum = pointSummer(writtenHomework) - writtenHomework[lowestIndex];
+	if (writtenHomework[lowestIndex] == -1) {
+		bestSum = pointSummer(writtenHomework, 5);
+	}
+	else {
+		bestSum = pointSummer(writtenHomework, 5) - writtenHomework[lowestIndex];
+	}
+	return bestSum;
 }
+//this method was made to deal with webassign because it's weird
+//since we don't know the point values for the individual assignments
+//so these grades are taken as percentages, averaged, and that average is projected onto the total possible point value later on
+double MAC2311::webAssignCalculator(double webAssign[]) {
+	//find number of grades that have been entered
+	double points;
+	int count = 0;
+	for (int i = 0; i < 13; i++) {
+		if (webAssign[i] != -1) {
+			count++;
+		}
+	}
+	//makes sure it never divides by zero
+	//if there are no webassign grades it returns -1
+	if (count != 0) {
+		points = ((pointSummer(webAssign, 13) / count) / 100) * 50;
+	}
+	else {
+		points = -1;
+	}
+	return points;
+}
+//This method condenses all the points and then sets the gpa value accordingly
+void MAC2311::calcGPA() {
+	double totalPoints = 0; //this tracks number of points earned
+	double pointDivision = 0; //this will track number of available points based on what has been graded
+	//webAssign points max out at 50
+	//for webassign, take in each grade as percentage, then use average percentage to calculate total points out of 50
+	//the if statements determine how the various grades affect the total, depending on which ones have been graded
+	if (webAssignCalculator(webAssign) != -1) {
+		totalPoints += webAssignCalculator(webAssign);
+		pointDivision += 50;
+	}
+	if (hittPoints != -1) {
+		totalPoints += hittPoints;
+		pointDivision += 40;
+	}
+	//now figure out how many quiz grades have been entered
+	int quizCount = 0;
+	for (int i = 0; i < 10; i++) {
+		if (quizzes[i] != -1) {
+			quizCount++;
+		}
+	}
+	//the if determinse how the quizzes affect the grade
+	//because there were a few different cases
+	if (quizCount > 8) {
+		pointDivision += 48;
+		totalPoints += bestOfQuizzes(quizzes);
+	}
+	else if (quizCount > 0 && quizCount < 8){
+		pointDivision += (6 * quizCount);
+		totalPoints += pointSummer(quizzes, 10);
+	}
+	//same but for written homework
+	int writtenHomeworkCount = 0;
+	for (int i = 0; i < 5; i++) {
+		if (writtenHomework[i] != -1) {
+			writtenHomeworkCount++;
+		}
+	}
+	if (writtenHomeworkCount == 5) {
+		pointDivision += 12;
+		totalPoints += bestOfWrittenHomework(writtenHomework);
+	}
+	else if (writtenHomeworkCount > 0 && writtenHomeworkCount < 5){
+		pointDivision += (3 * writtenHomeworkCount);
+		totalPoints += pointSummer(writtenHomework, 5);
+	}
+	//count entered exam grades
+	int examCount = 0;
+	for (int i = 0; i < 3; i++) {
+		if (exams[i] != -1) {
+			examCount++;
+		}
+	}
+	//if there is a final exam grade and at least one regular exam grade we can do this
+	if (finals != -1 && examCount != 0) {
+		examReplace(exams, finals);
+	}
+	if (examCount > 0) {
+		pointDivision += (75 * examCount);
+		totalPoints += pointSummer(exams, 20);
+	}
+	if (finals != -1) {
+		pointDivision += 75;
+		totalPoints += finals;
+	}
+	//makes sure no division by zer0 when finding percentage
+	double percentage;
+	if (pointDivision != 0) {
+		percentage = (totalPoints / pointDivision);
+	}
+	else {
+		//if no grades are in, gpa returns -1, which is what a percentage of -1 will lead to
+		percentage = -1;
+	}
+	//these ifs serve to set the gpa according to the total point value converted to a percentage
+	if (percentage >= (405.0 / 450.0)) {
+		//I changed these to use the setGPA function when I was debugging
+		//not sure if it is needed but it works like this so it shall remain
+		setGpa(4);
+	}
+	else if (percentage >= (390.0 / 450.0) && percentage < (405.0 / 450.0)) {
+		setGpa(3.67);
+	}
+	else if (percentage >= (375.0 / 450.0) && percentage < (390.0 / 450.0)) {
+		setGpa(3.33);
+	}
+	else if (percentage >= (360.0 / 450.0) && percentage < (375.0 / 450.0)) {
+		setGpa(3);
+	}
+	else if (percentage >= (345.0 / 450.0) && percentage < (360.0 / 450.0)) {
+		setGpa(2.67);
+	}
+	else if (percentage >= (325.0 / 450.0) && percentage < (345.0 / 450.0)) {
+		setGpa(2.33);
+	}
+	else if (percentage >= (305.0 / 450.0) && percentage < (325.0 / 450.0)) {
+		setGpa(2);
+	}
+	else if (percentage >= (290.0 / 450.0) && percentage < (305.0 / 450.0)) {
+		setGpa(1.67);
+	}
+	else if (percentage >= (275.0 / 450.0) && percentage < (290.0 / 450.0)) {
+		setGpa(1.33);
+	}
+	else if (percentage >= (260.0 / 450.0) && percentage < (275.0 / 450.0)) {
+		setGpa(1);
+	}
+	else if (percentage >= (245.0 / 450.0) && percentage < (260.0 / 450.0)) {
+		setGpa(0.67);
+	}
+	else if (percentage >= 0 && percentage < (245.0 / 450.0)) {
+		setGpa(0);
+	}
+	else {
+		setGpa(-1);
+	}
+}
+
