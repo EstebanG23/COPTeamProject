@@ -1,8 +1,9 @@
+
 #include "MAC2311.h"
 #include <iostream>
 
-//constructor initializes everything to -1
-MAC2311::MAC2311() {
+	//constructor initializes everything to -1
+	MAC2311::MAC2311() {
 	hittPoints = -1;
 	finals = -1;
 	for (int i = 0; i < 20; i++) {
@@ -163,6 +164,7 @@ void MAC2311::calcGpa() {
 	if (webAssignCalculator(webAssign) != -1) {
 		totalPoints += webAssignCalculator(webAssign);
 		pointDivision += 50;
+
 	}
 	if (hittPoints != -1) {
 		totalPoints += (hittPoints * 0.4);
@@ -179,11 +181,11 @@ void MAC2311::calcGpa() {
 	//because there were a few different cases
 	if (quizCount > 8) {
 		pointDivision += 48;
-		totalPoints += (bestOfQuizzes(quizzes) * 0.48);
+		totalPoints += (bestOfQuizzes(quizzes) / 8 * 0.48);
 	}
 	else if (quizCount > 0 && quizCount < 8) {
 		pointDivision += (6 * quizCount);
-		totalPoints += (pointSummer(quizzes, 10) * 0.48);
+		totalPoints += (pointSummer(quizzes, 10) / quizCount * 0.48);
 	}
 	//same but for written homework
 	int writtenHomeworkCount = 0;
@@ -194,11 +196,12 @@ void MAC2311::calcGpa() {
 	}
 	if (writtenHomeworkCount == 5) {
 		pointDivision += 12;
-		totalPoints += (bestOfWrittenHomework(writtenHomework) * 0.12);
+		totalPoints += (bestOfWrittenHomework(writtenHomework) / 4 * 0.12);
+
 	}
 	else if (writtenHomeworkCount > 0 && writtenHomeworkCount < 5) {
 		pointDivision += (3 * writtenHomeworkCount);
-		totalPoints += (pointSummer(writtenHomework, 5) * 0.12);
+		totalPoints += (pointSummer(writtenHomework, 5) / writtenHomeworkCount * 0.12);
 	}
 	//count entered exam grades
 	int examCount = 0;
@@ -214,12 +217,15 @@ void MAC2311::calcGpa() {
 	if (examCount > 0) {
 		pointDivision += (75 * examCount);
 		(totalPoints += examPointSummer(exams) * 0.75);
+	
 	}
 	if (finals != -1) {
 		pointDivision += 75;
 		totalPoints += (finals * 0.75);
+
 	}
 	//makes sure no division by zer0 when finding percentage
+	
 	double percentage;
 	if (pointDivision != 0) {
 		percentage = (totalPoints / pointDivision);
@@ -228,6 +234,8 @@ void MAC2311::calcGpa() {
 		//if no grades are in, gpa returns -1, which is what a percentage of -1 will lead to
 		percentage = -1;
 	}
+	
+
 	//these ifs serve to set the gpa according to the total point value converted to a percentage
 	if (percentage >= (405.0 / 450.0)) {
 		//I changed these to use the setGPA function when I was debugging
@@ -273,13 +281,11 @@ void MAC2311::calcGpa() {
 }
 void MAC2311::printAll()
 {
-	
-	cout << courseName << endl;
 	cout << endl;
 	cout << "Hittpoints: " << hittPoints << endl;
 	cout << endl;
 
-	cout << "WebAssign: " << endl;
+	cout << courseName << endl << "WebAssign: " << endl;
 	for (size_t i = 0; i < webAssignPrint.size(); i++) {
 		if (webAssignPrint[i] >= 0) {
 			cout << i + 1 << ". " << webAssignPrint[i] << endl;
@@ -301,6 +307,13 @@ void MAC2311::printAll()
 			cout << i + 1 << ". " << writtenHomeworkPrint[i] << endl;
 		}
 	}
+
+	cout << "Exams: " << endl;
+	for (size_t i = 0; i < examsPrint.size(); i++) {
+		if (examsPrint[i] >= 0) {
+			cout << i + 1 << ". " << examsPrint[i] << endl;
+		}
+	}
 	cout << endl;
 
 	cout << "Exams: " << endl;
@@ -309,7 +322,7 @@ void MAC2311::printAll()
 			cout << i + 1 << ". " << examsPrint[i] << endl;
 		}
 	}
-	
+
 
 	cout << endl;
 	cout << "Finals: " << finals << endl;
