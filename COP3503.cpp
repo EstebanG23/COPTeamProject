@@ -118,3 +118,35 @@ void COP3503::calcGpa() {
 		gpa = -1;
 	}
 }
+void COP3503::printAll()
+{
+
+	cout << "COP3503" << endl;
+
+	cout << "Group Project : " << groupProject << endl;
+	cout << endl;
+
+	cout << "Programming Assignments : " << endl;
+	for (size_t i = 0; i < tempAssignments.size(); i++) {
+		if (tempAssignments[i] >= 0)
+		{
+			cout << i + 1 << ". " << tempAssignments[i] << endl;
+		}
+	}
+
+	cout << endl;
+
+	cout << "Exams: " << endl;
+
+	for (size_t i = 0; i < exams.size(); i++) {
+		if (exams[i] >= 0)
+		{
+			cout << i + 1 << ". " << exams[i] << endl;
+		}
+
+	}
+
+	cout << endl;
+
+
+}
