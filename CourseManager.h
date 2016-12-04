@@ -30,7 +30,7 @@ public:
 
 	Course* search(string courseName);
 
-	Course findAt(int position);
+	Course* findAt(int position);
 
 	bool empty();
 };
