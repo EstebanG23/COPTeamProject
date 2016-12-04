@@ -76,7 +76,7 @@ void MAC2313::calcGpa() {
 	}
 	//count quizzes entered
 	int quizCount = 0;
-	for (int i = 0; i < 27; i++) {
+	for (int i = 0; i < 13; i++) {
 		if (quizzes[i] != -1) {
 			quizCount++;
 		}
