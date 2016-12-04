@@ -154,7 +154,7 @@ void MAC2311::calcGpa() {
 		pointDivision += 50;
 	}
 	if (hittPoints != -1) {
-		totalPoints += hittPoints;
+		totalPoints += (hittPoints * 0.4);
 		pointDivision += 40;
 	}
 	//now figure out how many quiz grades have been entered
@@ -168,11 +168,11 @@ void MAC2311::calcGpa() {
 	//because there were a few different cases
 	if (quizCount > 8) {
 		pointDivision += 48;
-		totalPoints += bestOfQuizzes(quizzes);
+		totalPoints += (bestOfQuizzes(quizzes) * 0.48);
 	}
 	else if (quizCount > 0 && quizCount < 8) {
 		pointDivision += (6 * quizCount);
-		totalPoints += pointSummer(quizzes, 10);
+		totalPoints += (pointSummer(quizzes, 10) * 0.48);
 	}
 	//same but for written homework
 	int writtenHomeworkCount = 0;
@@ -183,11 +183,11 @@ void MAC2311::calcGpa() {
 	}
 	if (writtenHomeworkCount == 5) {
 		pointDivision += 12;
-		totalPoints += bestOfWrittenHomework(writtenHomework);
+		totalPoints += (bestOfWrittenHomework(writtenHomework) * 0.12);
 	}
 	else if (writtenHomeworkCount > 0 && writtenHomeworkCount < 5) {
 		pointDivision += (3 * writtenHomeworkCount);
-		totalPoints += pointSummer(writtenHomework, 5);
+		totalPoints += (pointSummer(writtenHomework, 5) * 0.12);
 	}
 	//count entered exam grades
 	int examCount = 0;
@@ -202,11 +202,11 @@ void MAC2311::calcGpa() {
 	}
 	if (examCount > 0) {
 		pointDivision += (75 * examCount);
-		totalPoints += examPointSummer(exams);
+		(totalPoints += examPointSummer(exams) * 0.75);
 	}
 	if (finals != -1) {
 		pointDivision += 75;
-		totalPoints += finals;
+		totalPoints += (finals * 0.75);
 	}
 	//makes sure no division by zer0 when finding percentage
 	double percentage;
