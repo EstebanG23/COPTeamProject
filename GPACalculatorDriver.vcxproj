@@ -130,6 +130,8 @@
     <ClCompile Include="CourseManager.cpp" />
     <ClCompile Include="GPACalculatorDriver.cpp" />
     <ClCompile Include="InputValidator.cpp" />
+    <ClCompile Include="MAC2311.cpp" />
+    <ClCompile Include="MAC2312.cpp" />
     <ClCompile Include="PHY2048.cpp" />
     <ClCompile Include="PHY2049.cpp" />
   </ItemGroup>
@@ -140,6 +142,8 @@
     <ClInclude Include="Course.h" />
     <ClInclude Include="CourseManager.h" />
     <ClInclude Include="GPACalculatorDriver.h" />
+    <ClInclude Include="MAC2311.h" />
+    <ClInclude Include="MAC2312.h" />
     <ClInclude Include="PHY2048.h" />
     <ClInclude Include="InputValidator.h" />
     <ClInclude Include="PHY2049.h" />

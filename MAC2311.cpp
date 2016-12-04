@@ -1,4 +1,5 @@
 #include "MAC2311.h"
+#include <iostream>
 
 //constructor initializes everything to -1
 MAC2311::MAC2311() {
@@ -7,12 +8,18 @@ MAC2311::MAC2311() {
 	for (int i = 0; i < 20; i++) {
 		if (i < 13) {
 			webAssign[i] = -1;
+			webAssignPrint[i] = -1;
 		}
 		if (i < 10) {
 			quizzes[i] = -1;
+			quizzesPrint[i] = -1;
 		}
 		if (i < 5) {
 			writtenHomework[i] = -1;
+			writtenHomeworkPrint[i] = -1;
+		}
+		if (i < 20) {
+			examsPrint[i] = -1;
 		}
 		exams[i] = -1;
 	}
@@ -23,15 +30,19 @@ void MAC2311::updateHittPoints(double newScore) {
 }
 void MAC2311::updateWebAssign(int assignmentNumber, double newScore) {
 	webAssign[assignmentNumber] = newScore;
+	webAssignPrint[assignmentNumber] = newScore;
 }
 void MAC2311::updateQuiz(int quizNumber, double newScore) {
 	quizzes[quizNumber] = newScore;
+	quizzesPrint[quizNumber] = newScore;
 }
 void MAC2311::updateWrittenHomework(int assignmentNumber, double newScore) {
 	writtenHomework[assignmentNumber] = newScore;
+	writtenHomeworkPrint[assignmentNumber] = newScore;
 }
 void MAC2311::updateExam(int examNumber, double newScore) {
 	exams[examNumber] = newScore;
+	examsPrint[examNumber] = newScore;
 }
 void MAC2311::updateFinal(double newScore) {
 	finals = newScore;
@@ -259,4 +270,54 @@ void MAC2311::calcGpa() {
 	else {
 		setGpa(-1);
 	}
+}
+void MAC2311::PrintAll()
+{
+	cout << endl;
+	cout << "Hittpoints: " << hittPoints << endl;
+	cout << endl;
+
+	cout << courseName << endl << "WebAssign: " << endl;
+	for (size_t i = 0; i < webAssignPrint.size(); i++) {
+		if (webAssignPrint[i] >= 0) {
+			cout << i + 1 << ". " << webAssignPrint[i] << endl;
+		}
+	}
+	cout << endl;
+
+	cout << "Quizzes: " << endl;
+	for (size_t i = 0; i < quizzesPrint.size(); i++) {
+		if (quizzesPrint[i] >= 0) {
+			cout << i + 1 << ". " << quizzesPrint[i] << endl;
+		}
+	}
+	cout << endl;
+
+	cout << "Written Homework: " << endl;
+	for (size_t i = 0; i < writtenHomeworkPrint.size(); i++) {
+		if (writtenHomeworkPrint[i] >= 0) {
+			cout << i + 1 << ". " << writtenHomeworkPrint[i] << endl;
+		}
+	}
+
+	cout << "Exams: " << endl;
+	for (size_t i = 0; i < examsPrint.size(); i++) {
+		if (examsPrint[i] >= 0) {
+			cout << i + 1 << ". " << examsPrint[i] << endl;
+		}
+	}
+	cout << endl;
+
+	cout << "Exams: " << endl;
+	for (size_t i = 0; i < examsPrint.size(); i++) {
+		if (examsPrint[i] >= 0) {
+			cout << i + 1 << ". " << examsPrint[i] << endl;
+		}
+	}
+
+
+	cout << endl;
+	cout << "Finals: " << finals << endl;
+	cout << endl;
+
 }
