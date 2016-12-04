@@ -1,9 +1,8 @@
-
 #include "MAC2311.h"
 #include <iostream>
 
-	//constructor initializes everything to -1
-	MAC2311::MAC2311() {
+//constructor initializes everything to -1
+MAC2311::MAC2311() {
 	hittPoints = -1;
 	finals = -1;
 	for (int i = 0; i < 20; i++) {
@@ -217,7 +216,7 @@ void MAC2311::calcGpa() {
 	if (examCount > 0) {
 		pointDivision += (75 * examCount);
 		(totalPoints += examPointSummer(exams) * 0.75);
-	
+
 	}
 	if (finals != -1) {
 		pointDivision += 75;
@@ -225,7 +224,7 @@ void MAC2311::calcGpa() {
 
 	}
 	//makes sure no division by zer0 when finding percentage
-	
+
 	double percentage;
 	if (pointDivision != 0) {
 		percentage = (totalPoints / pointDivision);
@@ -234,7 +233,7 @@ void MAC2311::calcGpa() {
 		//if no grades are in, gpa returns -1, which is what a percentage of -1 will lead to
 		percentage = -1;
 	}
-	
+
 
 	//these ifs serve to set the gpa according to the total point value converted to a percentage
 	if (percentage >= (405.0 / 450.0)) {
@@ -281,11 +280,11 @@ void MAC2311::calcGpa() {
 }
 void MAC2311::printAll()
 {
-	cout << endl;
+	cout << courseName << endl;
 	cout << "Hittpoints: " << hittPoints << endl;
 	cout << endl;
 
-	cout << courseName << endl << "WebAssign: " << endl;
+	cout << "WebAssign: " << endl;
 	for (size_t i = 0; i < webAssignPrint.size(); i++) {
 		if (webAssignPrint[i] >= 0) {
 			cout << i + 1 << ". " << webAssignPrint[i] << endl;
