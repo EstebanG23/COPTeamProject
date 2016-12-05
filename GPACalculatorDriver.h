@@ -507,8 +507,17 @@ void addCustomCourse() {
 	//declares a new course
 	Course customCourse;
 
+	//makes sure that the user doesn't enter any of these values for the custom course
+	string courseName = getCourseName();
+	if (courseName.compare("PHY2048") == 0 || courseName.compare("PHY2049") == 0 || courseName.compare("COT3100") == 0 
+		|| courseName.compare("COP3502") == 0 || courseName.compare("COP3503") == 0 || courseName.compare("CHM2045") == 0 
+		|| courseName.compare("MAC2311") == 0 || courseName.compare("MAC2312") == 0 || courseName.compare("MAC2313") == 0
+		|| courseName.compare("MAS3114") == 0) {
+		cout << "Cannot add a course with that name" << endl << endl;
+		return;
+	}
 	//gets the course name, gpa, and credits from the user 
-	customCourse.setCourseName(getCourseName());
+	customCourse.setCourseName(courseName);
 	customCourse.setGpa(getGPA());
 	customCourse.setCredits(getCreditHours());
 
