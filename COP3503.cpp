@@ -41,6 +41,8 @@ double COP3503::examPointSummer(array<double, 20> examGrades) {
 	return total;
 }
 //This method condenses all the points as percentages and then sets the gpa value accordingly
+//calcs gpa based on syllabus
+//does not add in grades that are -1 which means that they have not been set
 void COP3503::calcGpa() {
 	double percentage = 0;
 	double divisor = 0;
@@ -118,6 +120,7 @@ void COP3503::calcGpa() {
 		gpa = -1;
 	}
 }
+//prints all of the grade values for the class
 void COP3503::printAll()
 {
 

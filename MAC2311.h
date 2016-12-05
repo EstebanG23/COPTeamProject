@@ -16,21 +16,26 @@ private:
 	double writtenHomework[5]; //best 4 of 5, 3 points each
 	array<double, 5>writtenHomeworkPrint;
 	array<double, 20>examsPrint;
+	void examReplace(array<double, 20>, double);
+	//helper functions for calc gpa function
+	double pointSummer(double[], int);
+	double examPointSummer(array<double, 20>);
+	double bestOfQuizzes(double[]);
+	double bestOfWrittenHomework(double[]);
+	double webAssignCalculator(double[]);
 
 public:
+	//constructor
 	MAC2311();
+	//calculate gpa based on all grades in class
 	void calcGpa();
+	//setters for private variables
 	void updateHittPoints(double);
 	void updateWebAssign(int, double);
 	void updateQuiz(int, double);
 	void updateWrittenHomework(int, double);
 	void updateExam(int, double);
 	void updateFinal(double);
-	void examReplace(array<double, 20>, double);
-	double pointSummer(double[], int);
-	double examPointSummer(array<double, 20>);
-	double bestOfQuizzes(double[]);
-	double bestOfWrittenHomework(double[]);
-	double webAssignCalculator(double[]);
+	//prints all of the grade values for this class
 	void printAll();
 };

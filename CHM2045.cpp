@@ -13,7 +13,7 @@
 #include "CHM2045.h"
 using namespace std;
 
-
+//constructor
 Chm2045::Chm2045() {
 	for (int i = 0; i<20; i++) {
 		exams[i] = -1;
@@ -22,7 +22,8 @@ Chm2045::Chm2045() {
 		homework[i] = -1;
 	}
 }
-
+//calcs gpa based on syllabus
+//does not add in grades that are -1 which means that they have not been set
 void Chm2045::calcGpa() {
 	double tempGPA = 0;
 	int numexams = 0;
@@ -83,7 +84,7 @@ void Chm2045::calcGpa() {
 		gpa = 0;
 	}
 }
-
+//setters for private variables
 void Chm2045::updateExam(int examNum, double score) {
 	this->exams[examNum] = score;
 }
@@ -99,7 +100,7 @@ void Chm2045::updateHomework(int homeworkNum, double score) {
 void Chm2045::updateHittPoints(double score) {
 	this->hittPoints = score;
 }
-
+//prints all of the grade values for class
 void Chm2045::printAll()
 {
 	cout << courseName << endl << "Homework: " << endl;

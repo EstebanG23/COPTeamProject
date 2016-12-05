@@ -149,6 +149,7 @@ void MAS3114::calcGpa() {
 		gpa = -1;
 	}
 }
+//prints all of the grade values for the course
 void MAS3114::printAll()
 {
 

@@ -18,10 +18,17 @@ private:
 	array<double, 8> tempQuizzes;
 	double writtenHomework[3]; //3 collected, 5 points each
 	array<double, 3> tempWrittenHomework;
+	//helper functions for calc gpa
+	double pointSummer(double[], int);
+	double examPointSummer(array<double, 20>);
+	double bestOfQuizzes(double[]);
 
 public:
+	//constructor
 	MAC2312();
+	//calculate gpa based on all grades in class
 	void calcGpa();
+	//setters for private variables
 	void updateHittPoints(double);
 	void updateWebAssign(double);
 	void updateQuiz(int, double);
@@ -29,9 +36,7 @@ public:
 	void updateParticipation(double);
 	void updateExam(int, double);
 	void updateFinal(double);
-	double pointSummer(double[], int);
-	double examPointSummer(array<double, 20>);
-	double bestOfQuizzes(double[]);
+	//prints all of the grade values
 	void printAll();
 };
 #endif

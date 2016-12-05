@@ -16,13 +16,15 @@
 using namespace std;
 
 
-
+//constructor
 Cot3100::Cot3100() {
 	for (int i = 0; i<20; i++) {
 		exams[i] = -1;
 	}
 }
 
+//calcs gpa based on syllabus
+//does not add in grades that are -1 which means that they have not been set
 void Cot3100::calcGpa() {
 	double tempGPA = 0;
 	int numexams = 0;
@@ -73,7 +75,7 @@ void Cot3100::calcGpa() {
 		gpa = 0;
 	}
 }
-
+//setters for the private variables
 void Cot3100::updateExam(int examNum, double score) {
 	this->exams[examNum] = score;
 }
@@ -81,6 +83,7 @@ void Cot3100::updateExam(int examNum, double score) {
 void Cot3100::updateFinal(double score) {
 	this->finals = score;
 }
+//prints all of the grade values for the class
 void Cot3100::printAll()
 {
 	cout << courseName << endl << "Exams: " << endl;

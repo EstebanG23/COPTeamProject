@@ -137,6 +137,7 @@ void MAC2313::calcGpa() {
 		gpa = -1;
 	}
 }
+//prints all of the grades for the course
 void MAC2313::printAll()
 {
 	cout << courseName << endl;

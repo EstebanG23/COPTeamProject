@@ -15,17 +15,22 @@ private:
 	array<double, 30> tempHomework;
 	double projects[5]; //130 points total
 	array<double, 5> tempProjects;
+	//helper functions for calc gpa
+	double pointSummer(double[], int);
+	double examPointSummer(array<double, 20>);
 
 public:
+	//constructor
 	MAS3114();
+	//calculate gpa based on all grades in class
 	void calcGpa();
+	//setters for private variables
 	void updateHomework(int, double);
 	void updateProjects(int, double);
 	void updateParticipation(double);
 	void updateQuiz(double);
 	void updateExams(int, double);
-	double pointSummer(double[], int);
-	double examPointSummer(array<double, 20>);
+	//prints all of the grade values for the class
 	void printAll();
 
 };

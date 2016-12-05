@@ -19,6 +19,7 @@ bool checkIfCinFailed()
 
 string InputValidator::getString()
 {
+	//gets a string from cin and returns it
 	string inputString;
 
 	getline(cin, inputString);

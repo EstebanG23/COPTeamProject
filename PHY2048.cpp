@@ -11,6 +11,7 @@
 #include <array>
 #include "PHY2048.h"
 
+//constructor that initializes everything to -1
 Phy2048::Phy2048() {
 	for (int i = 0; i<20; i++) {
 		exams[i] = -1;
@@ -25,6 +26,8 @@ Phy2048::Phy2048() {
 	}
 }
 
+//calculates the gpa for the given classed based on the grade values set
+//calculates the gpa based on the syllabus specifications
 void Phy2048::calcGpa() {
 	double tempGpa;
 	int numquiz = 0;
@@ -101,6 +104,7 @@ void Phy2048::calcGpa() {
 	}
 }
 
+//setters for the private variables
 void Phy2048::updateExam(int examNum, double score) {
 	this->exams[examNum] = score;
 }
@@ -121,6 +125,7 @@ void Phy2048::updateHittPoints(double score) {
 	this->hittPoints = score;
 }
 
+//prints all of the grade values
 void Phy2048::printAll() {
 	cout << courseName << endl << "Homework: " << endl;
 	for (size_t i = 0; i < homework.size(); i++) {

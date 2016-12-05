@@ -12,6 +12,7 @@
 #include <iostream>
 #include <array>
 
+//constructor that initializes everything to -1
 Phy2049::Phy2049() {
 	for (int i = 0; i<20; i++) {
 		exams[i] = -1;
@@ -26,6 +27,8 @@ Phy2049::Phy2049() {
 	}
 }
 
+//calculates the gpa for the given classed based on the grade values set
+//calculates the gpa based on the syllabus specifications
 void Phy2049::calcGpa() {
 	double tempGpa;
 	int numquiz = 0;
@@ -102,6 +105,7 @@ void Phy2049::calcGpa() {
 	}
 }
 
+//setters for private variables
 void Phy2049::updateExam(int examNum, double score) {
 	this->exams[examNum] = score;
 }
@@ -122,6 +126,7 @@ void Phy2049::updateHittPoints(double score) {
 	this->hittPoints = score;
 }
 
+//prints all of the grades for this class
 void Phy2049::printAll() {
 	cout << courseName << endl << "Homework: " << endl;
 	for (size_t i = 0; i < homework.size(); i++) {

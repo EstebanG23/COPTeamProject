@@ -15,7 +15,7 @@
 using namespace std;
 
 
-
+//constructor
 COP3502::COP3502() {
 	for (int i = 0; i<20; i++) {
 		exams[i] = -1;
@@ -29,6 +29,8 @@ COP3502::COP3502() {
 	}
 }
 
+//calcs gpa based on syllabus
+//does not add in grades that are -1 which means that they have not been set
 void COP3502::calcGpa() {
 	double tempGPA;
 	int numHW = 0;
@@ -123,7 +125,7 @@ void COP3502::calcGpa() {
 		gpa = 0;
 	}
 }
-
+//setters for the private variables
 void COP3502::updateExam(int examNum, double score) {
 	this->exams[examNum] = score;
 }
@@ -143,6 +145,7 @@ void COP3502::updateLab(int labNum, double score) {
 void COP3502::updateProgAssignments(int progNum, double score) {
 	this->progAssignments[progNum] = score;
 }
+//prints all of the grade values for the class
 void COP3502::printAll()
 {
 	cout << courseName << endl << "Homework: " << endl;

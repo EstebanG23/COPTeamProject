@@ -20,15 +20,17 @@
 using namespace std;
 
 int main() {
+	//used to get input
 	InputValidator iv = getInputValidator();
 	int menuInput = NULL;
 
 	while (menuInput != 7) {
+		//prints menu
 		cout << "1. Add previous GPA" << endl << "2. Show GPA" << endl << "3. Print courses " << endl
 			<< "4. Add a course " << endl << "5. Edit a course" << endl << "6. Delete a course" << endl << "7. Exit" << endl << endl;
 		menuInput = iv.getInt();
 		cout << endl;
-
+		//switches based on the choice the used gave
 		switch (menuInput) {
 		case 1:
 			addPreviousGPA();

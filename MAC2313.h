@@ -17,16 +17,21 @@ private:
 	array<double, 27> tempWebAssign;
 	double quizzes[13];
 	array<double, 13> tempQuizzes;
+	//helper functions for calc gpa
+	double pointSummer(double[], int);
+	double examPointSummer(array<double, 20>);
 
 public:
+	//constructor
 	MAC2313();
+	//calculates the gpa for the given class
 	void calcGpa();
+	//setters for private variables
 	void updateParticipation(double);
 	void updateWebAssign(int, double);
 	void updateQuiz(int, double);
 	void updateExam(int, double);
 	void updateFinal(double);
-	double pointSummer(double[], int);
-	double examPointSummer(array<double, 20>);
+	//prints all grade values for given class
 	void printAll();
 };
